@@ -2,7 +2,14 @@
     <div class="home-header">
         <span class="title">学生信誉考评系统</span>
         <div class="home-operator">
-            <el-button type="text">注销</el-button>
+
+            <el-badge :value="10" class="envelope">
+                <y-icon icon="icon-envelope"/>
+            </el-badge>
+            <el-button type="text">
+                注销&nbsp;
+                <y-icon icon="icon-logout"/>
+            </el-button>
         </div>
     </div>
 </template>
@@ -25,6 +32,15 @@
         .title {
             font-size: 24px;
             letter-spacing: 6px;
+        }
+        .home-operator {
+            .el-button{
+                font-size: 16px;
+            }
+        }
+        .envelope{
+            margin-right: 30px;
+            font-size: 24px;
         }
     }
 </style>
