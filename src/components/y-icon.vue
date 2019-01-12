@@ -2,13 +2,14 @@
     <svg class="y-icon" aria-hidden="true">
         <use :xlink:href="`#${icon}`"></use>
     </svg>
+
 </template>
 
 <script>
     export default {
         name: "y-icon",
-        props:{
-            icon:{type:String},
+        props: {
+            icon: {type: String},
         },
     }
 </script>

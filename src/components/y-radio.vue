@@ -4,6 +4,8 @@
         <y-icon :icon="activeIcon" class="y-radio-active-icon"/>
         <y-icon :icon="inactiveIcon" class="y-radio-inactive-icon"/>
     </div>
+
+
 </template>
 
 <script>

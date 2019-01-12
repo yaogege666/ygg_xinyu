@@ -15,16 +15,18 @@
                     active-icon="icon-heart"
                     inactive-icon="icon-yidiandiantubiao09"/>
         </div>
+
     </div>
 </template>
 
 <script>
     import YIcon from "../../components/y-icon";
     import YRadio from "../../components/y-radio";
+    import YRadio01 from "../../components/y-radio01";
 
     export default {
         name: "home",
-        components: {YRadio, YIcon},
+        components: {YRadio01, YRadio, YIcon},
         data() {
             return {
                 active: null,
