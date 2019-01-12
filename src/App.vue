@@ -1,37 +1,15 @@
 <template>
-  <div id="app">
-    <ygg/>
-    <home/>
-  </div>
+    <div class="app">
+        <h1>Hello world</h1>
+    </div>
 </template>
 
 <script>
-
-import Ygg from "./page/home/ygg";
-import Home from "./page/home/home";
-export default {
-  name: 'app',
-  components: {
-      Home,
-      Ygg
-
-  }
-}
+    export default {
+        name: "App"
+    }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss">
 
-
-}
-
-html,body,#app{
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-}
 </style>
