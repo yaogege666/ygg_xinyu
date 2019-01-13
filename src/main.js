@@ -21,7 +21,7 @@ Vue.prototype.$lv = {
 
 Vue.config.productionTip = false
 
-$utils.addScript("https://at.alicdn.com/t/font_1012025_ea0fg69c24p.js")
+$utils.addScript("https://at.alicdn.com/t/font_1012025_03yn5t2nyly2.js")
 
 new Vue({
     render: h => h(App),

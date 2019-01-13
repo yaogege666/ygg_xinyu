@@ -2,11 +2,15 @@
     <div class="home-header">
         <span class="title">学生信誉考评系统</span>
         <div class="home-operator">
+            <el-badge :value="12" class="clock" type="warning">
+                <y-icon icon="icon-iconset0218"/>
+            </el-badge>
 
             <el-badge :value="10" class="envelope">
                 <y-icon icon="icon-envelope"/>
             </el-badge>
-            <el-button type="text">
+
+            <el-button type="text" class="logout">
                 注销&nbsp;
                 <y-icon icon="icon-logout"/>
             </el-button>
@@ -42,5 +46,12 @@
             margin-right: 30px;
             font-size: 24px;
         }
+        .clock {
+            margin-right: 40px;
+            font-size: 24px;
+        }
+       .logout {
+           color: wheat;
+       }
     }
 </style>
