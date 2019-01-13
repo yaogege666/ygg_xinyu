@@ -1,6 +1,6 @@
 <template>
     <div class="home-menu">
-        <div class="home-menu-item" v-for="(item,index) in menus" :key="index">
+        <div class="home-menu-item" v-for="(item,index) in menus" :key="index" @click="$lv.push(item.path,item)">
             <div class="home-menu-item-content">
                 <y-icon :icon="item.icon"/>
                 <span>{{item.name}}</span>
@@ -17,12 +17,12 @@
                 menus: [
                     {
                         name: '学生个人信息',
-                        path: 'student/stu-detail',
+                        path: '/student/stu-detail',
                         icon: 'icon-user',
                     },
                     {
                         name: '教师个人信息',
-                        path: 'teacher/teac-detail',
+                        path: '/teacher/teac_detail',
                         icon: 'icon-user',
                     },
 

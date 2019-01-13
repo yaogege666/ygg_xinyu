@@ -1,9 +1,8 @@
 <template>
     <div class="home-content">
-        <stu_detail/>
-        <stu_duty/>
-        <stu_score/>
-        <stu_vac/>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
     </div>
 </template>
 
