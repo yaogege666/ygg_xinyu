@@ -11,5 +11,9 @@
 </script>
 
 <style lang="scss">
-
+    .home-menu {
+        width: 156px;
+        background-color: blueviolet;
+        height: 100%;
+    }
 </style>

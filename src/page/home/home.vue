@@ -22,5 +22,12 @@
 <style lang="scss">
     .home {
         @include full;
+        display: flex;
+        flex-direction: column;
+        .home-body {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+        }
     }
 </style>
