@@ -39,6 +39,11 @@
                         path: '/admin/admin',
                         icon: 'icon-user',
                     },
+                    {
+                        name: 'http请求示例',
+                        path: '/demo/demo-http',
+                        icon: 'icon-web3',
+                    }
                 ]
             }
         },
