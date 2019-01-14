@@ -7,14 +7,14 @@
 </template>
 
 <script>
-    import Stu_detail from "../student/stu-detail";
-    import Stu_duty from "../student/stu-duty";
-    import Stu_score from "../student/stu_score";
-    import Stu_vac from "../student/stu_vac";
+    import Stu_content from "../student/stu-content";
+    import Stu_echart from "../student/stu-echart";
+    import Stu_score from "../student/stu-score";
+    import Stu_absence from "../student/stu-absence";
 
     export default {
         name: "home-content",
-        components: {Stu_vac, Stu_score, Stu_duty, Stu_detail}
+        components: {Stu_absence, Stu_score, Stu_echart, Stu_content}
     }
 </script>
 
@@ -22,7 +22,7 @@
     .home-content {
         flex: 1;
         height: 100%;
-        background-color: cadetblue;
+        background-color: #d7dfe2;
         overflow: auto;
     }
 </style>
