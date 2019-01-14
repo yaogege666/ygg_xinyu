@@ -1,12 +1,15 @@
 const fly = require("flyio")
+import env from './env';
 
 const http = {
-    get(url, param) {
-        return fly.get(url, param)
+    async get(url, param) {
+        const {data} = await fly.get(env.ip + '/' + url, param);
+        return data;
     },
-    post(url, param) {
-        return fly.post(url, param)
+    async post(url, param = {}) {
+        const {data} = await fly.post(env.ip + '/' + url, param);
+        return data;
     },
-}
+};
 
-export default http
+export default http;
