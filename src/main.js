@@ -59,4 +59,9 @@ $utils.addScript("https://at.alicdn.com/t/font_1012025_03yn5t2nyly2.js")
 new Vue({
     router,
     render: h => h(App),
+    beforeCreate() {
+        if (this.$route.path !== '/') {
+            this.$lv.push(this.$route.path)
+        }
+    },
 }).$mount('#app')
