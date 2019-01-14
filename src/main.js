@@ -8,12 +8,14 @@ import 'src/styles/index.scss'
 import $utils from 'src/util/utils'
 import components from 'src/components/index'
 import http from 'src/util/http'
+import TableOption from './components/TableOption'
 
 Vue.config.productionTip = false
 /*安装ElementUI*/
 Vue.use(Element, {size: 'small', zIndex: 3000});
 Vue.use(VueRouter)
 const router = new VueRouter({routes: []})
+window.TableOption = TableOption
 
 /*全局注册组件*/
 Object.keys(components).forEach(key => Vue.component('y-' + $utils.getKebabCase(key), components[key]))
