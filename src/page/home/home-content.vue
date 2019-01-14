@@ -24,5 +24,11 @@
         height: 100%;
         background-color: #d7dfe2;
         overflow: auto;
+        & > div {
+            padding: 12px;
+            .el-card {
+                margin-bottom: 12px;
+            }
+        }
     }
 </style>

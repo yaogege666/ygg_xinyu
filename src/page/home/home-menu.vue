@@ -39,6 +39,16 @@
                         path: '/admin/admin',
                         icon: 'icon-guanliyuan',
                     },
+                    {
+                        name: 'http请求示例',
+                        path: '/demo/demo-http',
+                        icon: 'icon-web3',
+                    },
+                    {
+                        name: '列表展示示例',
+                        path: '/demo/demo-table',
+                        icon: 'icon-table',
+                    },
                 ]
             }
         },
