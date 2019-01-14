@@ -26,6 +26,7 @@
         .stu-evaluation {
             width: 1070px;
             height: 70px;
+            border: dashed 1px wheat;
             box-shadow: 7px 6px 5px #fdffee;
             display: flex;
             align-items: center;

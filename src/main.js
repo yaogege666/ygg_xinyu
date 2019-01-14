@@ -7,6 +7,10 @@ import App from './App'
 import 'src/styles/index.scss'
 import $utils from 'src/util/utils'
 import components from 'src/components/index'
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts
+
 
 Vue.config.productionTip = false
 /*安装ElementUI*/
@@ -54,7 +58,7 @@ Vue.prototype.$lv = {
         window.history.back()
     }
 }
-$utils.addScript("https://at.alicdn.com/t/font_1012025_03yn5t2nyly2.js")
+$utils.addScript("https://at.alicdn.com/t/font_1012025_0zt1o4ecay8i.js")
 
 new Vue({
     router,

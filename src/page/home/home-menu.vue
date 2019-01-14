@@ -18,26 +18,26 @@
                     {
                         name: '首页',
                         path: '/admin/home-main',
-                        icon: 'icon-user',
+                        icon: 'icon-shouye',
                     },
                     {
                         name: '学生信息平台',
                         path: '/student/stu-content',
-                        icon: 'icon-user',
+                        icon: 'icon-xuesheng',
                     },
                     {
                         name: '教师信息平台',
                         path: '/teacher/tea-content',
-                        icon: 'icon-user',
+                        icon: 'icon-laoshi',
                     }, {
                         name: '巡视人员平台',
                         path: '/patrol/patrol',
-                        icon: 'icon-user',
+                        icon: 'icon-teacher',
                     },
                     {
                         name: '管理员平台',
                         path: '/admin/admin',
-                        icon: 'icon-user',
+                        icon: 'icon-guanliyuan',
                     },
                 ]
             }

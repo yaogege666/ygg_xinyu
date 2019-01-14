@@ -1,10 +1,12 @@
 <template>
     <div class="home-main">
-        <span class="home-main-header">欢迎来到信誉考评系统</span>
+        <span class="home-main-header">信誉考评系统登录入口</span>
         <div>
-            <div class="home-main-content">学生登录入口</div>
-            <div class="home-main-content">任课老师登录入口</div>
-            <div class="home-main-content">考评管理员登录入口</div>
+            <div class="home-main-content"> <a href="">学生登录入口</a></div>
+
+            <div class="home-main-content"><a href="">任课老师登录入口</a></div>
+            <div class="home-main-content"><a href="">巡视人员入口</a></div>
+            <div class="home-main-content"><a href="">考评管理员登录入口</a></div>
         </div>
     </div>
 </template>
@@ -35,6 +37,9 @@
              justify-content: space-around;
              background-color: wheat;
 
+         }
+         .home-main-content a {
+             text-decoration: none;
          }
 
      }

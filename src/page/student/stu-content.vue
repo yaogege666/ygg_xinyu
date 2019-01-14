@@ -40,6 +40,7 @@
             .stu-content {
                 width: 270px;
                 height: 150px;
+                border: dashed 1px wheat;
                 box-shadow: 7px 6px 5px #fdffee;
                 margin: 20px 20px;
                 display: flex;
