@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import echarts from 'echarts'
 
 import App from './App'
 import 'src/styles/index.scss'
@@ -58,8 +59,9 @@ Vue.prototype.$lv = {
     }
 }
 Vue.prototype.$http = http
+Vue.prototype.$echarts = echarts
 
-$utils.addScript("https://at.alicdn.com/t/font_1012025_03yn5t2nyly2.js")
+$utils.addScript("https://at.alicdn.com/t/font_1012025_0zt1o4ecay8i.js")
 
 new Vue({
     router,

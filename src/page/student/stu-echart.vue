@@ -1,6 +1,5 @@
 <template>
         <div id="myChart"></div>
-      <!--  <div id="myChart_all"></div>-->
 </template>
 
 <script>
@@ -13,39 +12,78 @@
         },
         mounted() {
             this.drawLine();
-            /*this.drawRec();*/
         },
         methods: {
             drawLine() {
                 let myChart = this.$echarts.init(document.getElementById('myChart'))
                 myChart.setOption({
-                    title: { text: '本学期加分和减分'},
-                    tooltip: {},
-                    xAxis: {
-                        type: 'category',
-                        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
                     },
-                    yAxis: {
-                        type: 'value'
+                    legend: {
+                        data: ['总分', '得分', '扣分']
                     },
-                    series: [{
-                        name:'加分',
-                        data: [20, 40, 50, 70, 90, 30, 80],
-                        type: 'line'
-                    },{
-                        name:'减分',
-                        data: [50, 30, 60, 90, 50, 80, 10],
-                        type: 'line'
-                    },{
-                        name:'总成绩',
-                        data: [70, 10, 90, 80, 90, 30, 40],
-                        type: 'line'
-                    }]
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    xAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '总分',
+                            type: 'bar',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'inside'
+                                }
+                            },
+                            data: [200, 170, 240, 244, 200, 220, 210]
+                        },
+                        {
+                            name: '得分',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true
+                                }
+                            },
+                            data: [320, 302, 341, 374, 390, 450, 420]
+                        },
+                        {
+                            name: '扣分',
+                            type: 'bar',
+                            stack: '总量',
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'left'
+                                }
+                            },
+                            data: [-120, -132, -101, -134, -190, -230, -210]
+                        }
+                    ]
                 });
-            },
-/**/
-        }
+            }
 
+        }
     }
 </script>
 
@@ -53,13 +91,8 @@
     #myChart{
         width: 60%;
         height: 400px;
-        margin-top: 15px;
+        margin-top: 35px;
+        margin-left: 230px;
         background-color: #d7dfe2;
     }
-/*    #myChart_all {
-        width: 40%;
-        height: 400px;
-        margin-top: 15px;
-        background-color: wheat;
-    }*/
 </style>
