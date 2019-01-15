@@ -2,6 +2,9 @@ const path = require('path')
 const resolve = (dir) => path.join(__dirname, '.', dir)
 
 module.exports = {
+    devServer: {
+        proxy: 'http://localhost:8989'
+    },
     pages: {
         index: {
             // page 的入口
@@ -40,21 +43,17 @@ module.exports = {
                     'src':
                         resolve('src'),
                 }
-        }
-        ,
-    }
-    ,
+        },
+    },
     css: {
         loaderOptions: {
             sass: {
                 data: `@import "src/styles/global.scss";`
             }
         }
-    }
-    ,
+    },
     chainWebpack: config => {
         config.plugins.delete('prefetch')
         config.plugins.delete('prefetch')
     }
-}
-;
+};
