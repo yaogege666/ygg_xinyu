@@ -10,7 +10,7 @@
                 <y-icon icon="icon-envelope"/>
             </el-badge>
 
-            <el-button type="text" class="logout">
+            <el-button type="text" class="logout" @click="logout">
                 注销&nbsp;
                 <y-icon icon="icon-logout"/>
             </el-button>
@@ -20,7 +20,12 @@
 
 <script>
     export default {
-        name: "home-header"
+        name: "home-header",
+        methods: {
+            logout() {
+                window.location.href = '/login.html'
+            },
+        }
     }
 </script>
 
@@ -38,11 +43,11 @@
             letter-spacing: 6px;
         }
         .home-operator {
-            .el-button{
+            .el-button {
                 font-size: 16px;
             }
         }
-        .envelope{
+        .envelope {
             margin-right: 30px;
             font-size: 24px;
         }
@@ -50,8 +55,8 @@
             margin-right: 40px;
             font-size: 24px;
         }
-       .logout {
-           color: wheat;
-       }
+        .logout {
+            color: wheat;
+        }
     }
 </style>
