@@ -27,7 +27,7 @@
 <style lang="scss">
     .home-header {
         height: 64px;
-        background-color: #2f333e;
+        background-color: #1b7171;
         color: white;
         display: flex;
         align-items: center;

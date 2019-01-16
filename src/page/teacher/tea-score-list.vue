@@ -28,7 +28,7 @@
                     width="120">
             </el-table-column>
             <el-table-column
-                    prop="evaluation"
+                    prop="type"
                     label="考评性质"
                     width="200">
             </el-table-column>
@@ -70,7 +70,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -78,7 +78,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -86,7 +86,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -94,7 +94,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -102,7 +102,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -110,7 +110,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,{
@@ -118,7 +118,7 @@
                     class: '软件153',
                     date: '2016-05-03',
                     isWarn:'false',
-                    evaluation: ['上课打游戏','不认真听讲'],
+                    type: ['上课打游戏','不认真听讲'],
                     nature: '问题学生',
                     suggestions: '好好上课，不然退学'
                 } ,]

@@ -22,7 +22,7 @@
     .home-content {
         flex: 1;
         height: 100%;
-        background-color: #d7dfe2;
+        background-color: #f2f2f2;
         overflow: auto;
         & > div {
             padding: 12px;

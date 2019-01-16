@@ -93,6 +93,6 @@
         height: 400px;
         margin-top: 35px;
         margin-left: 230px;
-        background-color: #d7dfe2;
+        background-color: #badbe2;
     }
 </style>

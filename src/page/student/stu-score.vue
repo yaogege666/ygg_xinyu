@@ -1,13 +1,26 @@
 <template>
     <div class="stu-content-evaluation">
         <span>任课老师评分意见</span>
-        <div class="stu-evaluation">数学老师</div>
+        <div class="stu-evaluation">
+           <div>任课老师--</div>
+            <div>考评时间--</div>
+            <div>是否被警告--</div>
+            <div>在校现象--</div>
+            <div>学生性质--</div>
+            <div>老师意见--</div>
+        </div>
         <br/>
-        <div class="stu-evaluation">英语老师</div>
+        <div class="stu-evaluation">
+
+        </div>
         <br/>
-        <div class="stu-evaluation">语文老师</div>
+        <div class="stu-evaluation">
+
+        </div>
         <br/>
-        <div class="stu-evaluation">巡视老师</div>
+        <div class="stu-evaluation">
+
+        </div>
 
     </div>
 </template>

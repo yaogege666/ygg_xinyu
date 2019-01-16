@@ -63,7 +63,7 @@
 <style lang="scss">
     .home-menu {
         width: 200px;
-        background-color: #fdffd8;
+        background-color: #e8eacc;
         height: 100%;
         padding: 12px 0;
         .home-menu-item {

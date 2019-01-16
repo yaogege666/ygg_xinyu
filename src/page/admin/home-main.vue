@@ -24,7 +24,7 @@
          display: flex;
          align-items: center;
          justify-content: space-around;
-         background-color: aquamarine;
+         background-color: #d7dfe2;
          .home-main-header {
              color: blueviolet;
              font-size: 30px;

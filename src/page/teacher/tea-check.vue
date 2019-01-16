@@ -127,7 +127,7 @@
         width: 1050px;
         height: 530px;
         margin: 20px 40px;
-        background-color: #fdffd8;
+        background-color: #f2f2f2;
         .tea-check-header {
             color: red;
             font-size: 25px;
