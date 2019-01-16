@@ -27,6 +27,7 @@
         @include full;
         display: flex;
         flex-direction: column;
+        background-color: #eef5f9;
         .home-body {
             flex: 1;
             display: flex;

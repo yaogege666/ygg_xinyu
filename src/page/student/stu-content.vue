@@ -1,24 +1,24 @@
 <template>
     <div class="stu-content">
-        <span class="stu-detail-index">学生个人基本信息</span>
-        <div class="stu-content-wrapper">
+        <div class="stu-content-list">
             <div class="stu-content">
-                <div class="stu-content-item">姓名：小明</div>
-                <br/>
-                <div class="stu-content-item">班级：软件151</div>
+                <div class="stu-content-item">
+                    <div class="stu-content-item">姓名：小明</div>
+                    <div class="stu-content-item">班级：软件151</div>
+                </div>
             </div>
             <div class="stu-content">
-                <div class="stu-content-item">电话号码 </div>
-                <br/>
+                <div class="stu-content-item">电话号码</div>
+            </div>
+            <div class="stu-content">
                 <div class="stu-content-item">邮箱地址</div>
             </div>
-
-            <div class="stu-content-score">
-                <div class="stu-content-score-header">综合信誉考评成绩</div>
-                <br/>
-                <div class="stu-content-score-header">分数</div>
+            <div class="stu-content">
+                <div class="stu-content-item">
+                    <div class="stu-content-item">综合信誉考评成绩</div>
+                    <div class="stu-content-item">分数</div>
+                </div>
             </div>
-
         </div>
         <stu_score/>
         <stu-echart/>
@@ -41,39 +41,38 @@
         width: 100%;
         background-color: #f5f5ff;
         color: #0a0a26;
-        .stu-content-wrapper {
-            margin: 10px 45px;
+        padding: 20px !important;
+        box-sizing: border-box;
+        .stu-content-list {
+            width: 100%;
+            height: 156px;
             display: flex;
+            flex-direction: row;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            background-color: white;
+            box-shadow: 3px 3px 5px #ddd;
+            margin-bottom: 12px;
+
             .stu-content {
-                width: 270px;
-                height: 150px;
-                border: dashed 1px wheat;
-                box-shadow: 7px 6px 5px #fdffee;
-                padding: 10px;
-                margin: 20px 20px;
-                background-color: #ffffff;
-
+                height: 100px;
+                flex: 1;
+                background-color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 .stu-content-item {
-                    padding: 10px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                }
 
+                &:not(:last-child){
+                    border-right: solid #e8e8e8 1px;
                 }
             }
-            .stu-content-score {
-                width: 270px;
-                height: 150px;
-                border: dashed 1px wheat;
-                box-shadow: 7px 6px 5px #fdffee;
-                background-color: #ffffff;
-              .stu-content-score-header {
-                  margin-left: 65px;
-                  margin-top: 20px;
 
-              }
-
-
-            }
         }
 
     }

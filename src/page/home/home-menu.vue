@@ -66,12 +66,16 @@
         background-color: #ffffff;
         height: 100%;
         padding: 12px 0;
+        margin-right: 12px;
+        box-shadow: 0 0 6px gray;
         .home-menu-item {
             padding-left: 12px;
             cursor: pointer;
             .home-menu-item-content {
-                border-bottom: dashed 1px #d7dfe2;
+                border-bottom: solid 1px #d7dfe2;
                 padding: 12px 0;
+                font-size: 14px;
+                letter-spacing: 3px;
                 .lv-icon {
                     margin-right: 12px;
                 }
