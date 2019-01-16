@@ -1,6 +1,8 @@
 <template>
     <div class="home-menu">
-        <div class="home-menu-item" v-for="(item,index) in menus" :key="index" @click="go(item)">
+        <div class="home-menu-item"
+             :class="{'home-menu-item-active':currentPath === item.path}"
+             v-for="(item,index) in menus" :key="index" @click="go(item)">
             <div class="home-menu-item-content">
                 <y-icon :icon="item.icon"/>
                 <span>{{item.name}}</span>
@@ -14,6 +16,7 @@
         name: "home-menu",
         data() {
             return {
+                currentPath: null,
                 menus: [
                     {
                         name: '首页',
@@ -54,9 +57,13 @@
         },
         methods: {
             go(item) {
+                this.currentPath = item.path
                 this.$lv.push(item.path, item)
             },
-        }
+        },
+        mounted() {
+            this.currentPath = this.$route.path
+        },
     }
 </script>
 
@@ -80,8 +87,12 @@
                     margin-right: 12px;
                 }
             }
-            &:hover {
-                background-color: #f8e9e9;
+            &:hover, &.home-menu-item-active {
+                background-color: #6BB8B8;
+                color: white;
+                .home-menu-item-content {
+                    border-color: #6BB8B8;
+                }
             }
         }
     }
