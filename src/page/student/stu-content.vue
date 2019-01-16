@@ -41,7 +41,6 @@
         width: 100%;
         background-color: #f5f5ff;
         color: #0a0a26;
-        padding: 20px !important;
         box-sizing: border-box;
         .stu-content-list {
             width: 100%;

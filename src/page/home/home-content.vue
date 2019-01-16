@@ -25,7 +25,8 @@
         height: 100%;
         overflow: auto;
         & > div {
-            padding: 12px;
+            padding: 20px;
+            padding-left: 8px;
             .el-card {
                 margin-bottom: 12px;
             }
