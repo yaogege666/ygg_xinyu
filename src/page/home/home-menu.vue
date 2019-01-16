@@ -63,7 +63,7 @@
 <style lang="scss">
     .home-menu {
         width: 200px;
-        background-color: #e8eacc;
+        background-color: #ffffff;
         height: 100%;
         padding: 12px 0;
         .home-menu-item {
@@ -77,7 +77,7 @@
                 }
             }
             &:hover {
-                background-color: #f2f2f2;
+                background-color: #f8e9e9;
             }
         }
     }

@@ -95,7 +95,9 @@
              * @date    2019/1/14 20:11
              */
             async queryData() {
-                this.data = (await this.$http.post('lov/queryAll')).ret
+                const data = await this.$http.post('lov/queryAll')
+                console.log(data)
+                this.data = data.ret
             },
             /**
              * 保存插入的数据
@@ -131,8 +133,8 @@
             },
             /**
              * 重置表单数据
-             * @author  韦胜健
-             * @date    2019/1/14 20:11
+             * @author  姚格格
+             * @date    2019/1/16 20:11
              */
             async reset() {
                 this.formData.label = null

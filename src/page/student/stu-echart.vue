@@ -1,15 +1,15 @@
 <template>
+
+    <div class="stu-echart">
+        <div class="stu-echart-header">本学期信誉评价得分汇总表</div>
         <div id="myChart"></div>
+
+    </div>
 </template>
 
 <script>
     export default {
         name: "stu-echart",
-        data() {
-            return {
-                msg: 'Welcome to Your Vue.js App'
-            }
-        },
         mounted() {
             this.drawLine();
         },
@@ -88,11 +88,24 @@
 </script>
 
 <style lang="scss">
-    #myChart{
-        width: 60%;
-        height: 400px;
+    .stu-echart {
+        width: 100%;
+        height: 430px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: 35px;
-        margin-left: 230px;
-        background-color: #badbe2;
+        background-color: #f5f5ff;
+        #myChart {
+            width: 60%;
+            height: 430px;
+            background-color: #f5f5ff;
+            margin-left: 80px;
+        }
+        .stu-echart-header {
+            font-size: 23px;
+            color: black;
+
+        }
     }
 </style>

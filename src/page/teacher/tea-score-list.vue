@@ -132,7 +132,7 @@
             width: 1050px;
             height: 500px;
             margin: 20px 40px;
-            background-color: #fdffd8;
+            background-color: #f9fffd;
             .tea-score-header {
                 color: red;
                 font-size: 25px;

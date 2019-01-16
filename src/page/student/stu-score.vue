@@ -35,7 +35,7 @@
     .stu-content-evaluation {
         width: 100%;
         height: 400px;
-        background-color: #d7dfe2;
+        background-color: #f5f5ff;
         .stu-evaluation {
             width: 1070px;
             height: 70px;
@@ -46,7 +46,7 @@
             justify-content: center;
             margin-left: 50px;
             margin-top: 10px;
-            background-color: #fff;
+            background-color: #ffffff;
         }
 
     }

@@ -2,12 +2,7 @@
     <div class="stu-content-absence">
         <div class="stu-absence-index">学生请假栏目</div>
         <div class="stu-absence">
-            <el-input
-                    type="textarea"
-                    :rows="12"
-                    placeholder="请输入内容"
-                    v-model="textarea">
-            </el-input>
+            表单：填写具体的请假信息
         </div>
         <button>提交信息</button>
     </div>
@@ -26,7 +21,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #d7dfe2;
+        background-color: #f5f5ff;
         .stu-absence {
             width: 700px;
             height: 250px;
@@ -36,7 +31,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #fff;
+            background-color: #ffffff;
         }
     }
 </style>
