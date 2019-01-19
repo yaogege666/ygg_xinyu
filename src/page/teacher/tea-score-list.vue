@@ -1,11 +1,12 @@
 <template>
     <div class="tea-score-list">
-        <span class="tea-check-header"> &nbsp; &nbsp;学生请假信息审批</span> <br/>
+        <div class="tea-score-header"> &nbsp; &nbsp;学生记录考评一览表</div>
+        <br/>
         <el-table
                 :data="tableData"
                 border
-                style="width: 95%;margin: 20px"
-                :row-class-name="tableRowClassName" >
+                style="width: 95%;"
+                :row-class-name="tableRowClassName">
             <el-table-column
                     fixed="left"
                     prop="name"
@@ -19,7 +20,7 @@
             </el-table-column>
             <el-table-column
                     prop="date"
-                    label="记录时间"
+                    label="考评时间"
                     width="120">
             </el-table-column>
             <el-table-column
@@ -29,12 +30,22 @@
             </el-table-column>
             <el-table-column
                     prop="type"
-                    label="考评性质"
+                    label="问题性质"
                     width="200">
             </el-table-column>
             <el-table-column
                     prop="nature"
                     label="学生性质"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="add"
+                    label="学生加分"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="decrease"
+                    label="学生减分"
                     width="120">
             </el-table-column>
             <el-table-column
@@ -69,74 +80,91 @@
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,{
+                }, {
                     name: '王小虎',
                     class: '软件153',
                     date: '2016-05-03',
-                    isWarn:'false',
-                    type: ['上课打游戏','不认真听讲'],
+                    isWarn: 'false',
+                    type: ['上课打游戏', '不认真听讲'],
                     nature: '问题学生',
+                    add: '80',
+                    decrease: '30',
                     suggestions: '好好上课，不然退学'
-                } ,]
+                },]
             }
         }
     }
 </script>
 
 <style lang="scss">
-        .tea-score-list {
-            width: 1050px;
-            height: 500px;
-            margin: 20px 40px;
-            background-color: #f9fffd;
-            .tea-score-header {
-                color: red;
-                font-size: 25px;
-            }
+    .tea-score-list {
+        width: 1190px;
+        height: 600px;
+        margin-left: 5px;
+        background-color: #ffffff;
+        .tea-score-header {
+            color: #0a0a26;
+            font-size: 25px;
+            margin-bottom: 30px;
+            margin-right: 120px;
+            text-align: center;
         }
+    }
 
 </style>

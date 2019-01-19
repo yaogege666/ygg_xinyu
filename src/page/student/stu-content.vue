@@ -20,26 +20,30 @@
                 </div>
             </div>
         </div>
-        <stu_score/>
+        <Stu_evaluation/>
         <stu-echart/>
-        <stu_absence/>
+        <stu-score/>
+      <stu_absence/>
+
     </div>
 </template>
 <script>
-    import Stu_score from "./stu-score";
+    import Stu_evaluation from "./stu-evaluation";
     import StuEchart from "./stu-echart";
     import Stu_absence from "./stu-absence";
+    import Stu_absence_list from "./stu-absence-list";
+    import StuScore from "./stu-score";
 
     export default {
         name: "stu_content",
-        components: {Stu_absence, StuEchart, Stu_score}
+        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart, Stu_evaluation}
     }
 </script>
 
 <style lang="scss">
     .stu-content {
         width: 100%;
-        background-color: #f5f5ff;
+        background-color: #eef5f9;
         color: #0a0a26;
         box-sizing: border-box;
         .stu-content-list {

@@ -1,22 +1,22 @@
 <template>
-    <div  class="patrol">
-        <span class="patrol-header">&nbsp;&nbsp;巡视老师的记录和考评</span>
+    <div  class="patrol-score">
+        <div class="patrol-score-header">学生的记录和考评</div>
         <el-form
                 ref="form"
                 :model="form"
                 label-width="80px"
-                style="width: 95%;margin: 20px"
+                style="width: 95%;margin: 10px"
         >
             <el-form-item label="学生姓名">
                 <el-input v-model="form.name" style="width: 100px"></el-input>
             </el-form-item>
             <el-form-item label="学生班级">
-                <el-select v-model="form.class" placeholder="请选择班级">
+                <el-select v-model="form.class_name" placeholder="请选择班级">
                     <el-option label="软件151" value="151"></el-option>
                     <el-option label="软件152" value="152"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="记录时间">
+            <el-form-item label="考评时间">
                 <el-col :span="11">
                     <el-date-picker type="date" placeholder="选择日期" v-model="form.date" style="width: 100%;"></el-date-picker>
                 </el-col>
@@ -39,6 +39,12 @@
                     <el-radio label="优秀学生"></el-radio>
                 </el-radio-group>
             </el-form-item>
+            <el-form-item label="学生加分">
+                <el-input-number v-model="form.num1" @change="handleChange" :min="1" :max="100" ></el-input-number>
+            </el-form-item>
+            <el-form-item label="学生减分">
+                <el-input-number v-model="form.num2" @change="handleChange" :min="1" :max="100" ></el-input-number>
+            </el-form-item>
             <el-form-item label="老师建议">
                 <el-input type="textarea" v-model="form.suggestions"></el-input>
             </el-form-item>
@@ -52,21 +58,26 @@
 
 <script>
     export default {
-        name: "patrol",
+        name: "tea-score",
         data() {
             return {
                 form: {
                     name: '',
-                    class: '',
+                    class_name: '',
                     date: '',
                     isWarn: false,
                     question_type: [],
                     nature: '',
-                    suggestions: ''
+                    suggestions: '',
+                    num1:1,
+                    num2:1
                 }
             }
         },
         methods: {
+            handleChange(value) {
+                console.log(value);
+            },
             onSubmit() {
                 console.log('submit!');
             }
@@ -75,14 +86,17 @@
 </script>
 
 <style lang="scss">
-    .patrol {
-        width: 1050px;
-        height: 500px;
-        margin: 20px 40px;
-        background-color: #f2f2f2;
-        .patrol-header {
-            color: red;
+    .patrol-score {
+        width: 1210px;
+        height: 600px;
+        margin-left: 5px;
+        background-color: #ffffff;
+        .patrol-score-header {
+            color: #0a0a26;
             font-size: 25px;
+            margin-bottom: 30px;
+            margin-right: 120px;
+            text-align: center;
         }
     }
 </style>

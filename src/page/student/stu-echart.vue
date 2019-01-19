@@ -95,11 +95,11 @@
         align-items: center;
         justify-content: center;
         margin-top: 35px;
-        background-color: #f5f5ff;
+        background-color: #eef5f9;
         #myChart {
             width: 60%;
             height: 430px;
-            background-color: #f5f5ff;
+            background-color: #eef5f9;
             margin-left: 80px;
         }
         .stu-echart-header {

@@ -19,11 +19,6 @@
                 currentPath: null,
                 menus: [
                     {
-                        name: '首页',
-                        path: '/admin/home-main',
-                        icon: 'icon-shouye',
-                    },
-                    {
                         name: '学生信息平台',
                         path: '/student/stu-content',
                         icon: 'icon-xuesheng',

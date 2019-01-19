@@ -3,9 +3,7 @@
         <home-header/>
         <div class="home-body">
             <home-menu/>
-            <home-content>
-                 <home-main/>
-            </home-content>
+            <home-content/>
         </div>
     </div>
 </template>
@@ -14,11 +12,10 @@
     import HomeHeader from "./home-header";
     import HomeMenu from "./home-menu";
     import HomeContent from "./home-content";
-    import HomeMain from "../admin/home-main";
 
     export default {
         name: "home",
-        components: {HomeMain, HomeContent, HomeMenu, HomeHeader}
+        components: { HomeContent, HomeMenu, HomeHeader}
     }
 </script>
 
