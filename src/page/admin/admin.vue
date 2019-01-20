@@ -1,6 +1,7 @@
 <template>
-    <div>
-        admin
+    <div class="admin">
+        <div class="admin-class">课程管理</div>
+        <div class="admin-user">用户管理</div>
     </div>
 </template>
 

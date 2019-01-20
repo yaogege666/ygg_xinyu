@@ -67,7 +67,6 @@
                 <el-button @click="deleteData">删除</el-button>
             </el-form>
         </el-card>
-
     </div>
 </template>
 

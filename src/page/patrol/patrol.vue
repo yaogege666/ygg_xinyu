@@ -90,6 +90,7 @@
         width: 1210px;
         height: 600px;
         margin-left: 5px;
+        margin-top: 15px;
         background-color: #ffffff;
         .patrol-score-header {
             color: #0a0a26;

@@ -32,7 +32,7 @@
     import TeaScore from "./tea-score";
     import TeaCheck from "./tea-check";
     import TeaScoreList from "./tea-score-list";
-    import Tea_echart from "./tea_echart";
+    import Tea_echart from "./tea-echart";
 
     export default {
         name: "tea-content",
