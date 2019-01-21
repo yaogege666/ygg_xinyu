@@ -9,8 +9,8 @@
                 <div class="app-login-switcher">登录</div>
                 <div class="app-login-content">
                     <div>
-                        <input type="text" placeholder="学号/工号" v-model="user.username">
-                        <input type="password" placeholder="密码" v-model="user.password">
+                        <input type="text" placeholder="学号/工号" v-model="user.username" ref="username" @keyup.enter="login">
+                        <input type="password" placeholder="密码" v-model="user.password" ref="password" @keyup.enter="login">
                     </div>
                     <div class="app-login-content-login-button" @click="login">登录</div>
                 </div>
@@ -20,6 +20,11 @@
 </template>
 
 <script>
+
+    import {getModuleStore} from "../util/store";
+
+    const {mapMutations, mapGetters} = getModuleStore('user')
+
     export default {
         name: "login",
         data() {
@@ -34,7 +39,21 @@
                 loginBg: require('src/asserts/login-bg.jpg'),
             }
         },
+        computed: {
+            ...mapGetters(['userInfo']),
+        },
+        mounted() {
+            if (!!this.userInfo && !!this.userInfo.username) {
+                this.user.username = this.userInfo.username
+                this.$refs.password.focus()
+            } else {
+                this.$refs.username.focus()
+            }
+        },
         methods: {
+            ...mapMutations([
+                'setUserInfo', 'setLoginTime'
+            ]),
             async login() {
                 if (!this.user.username) {
                     this.$message("用户名不能为空")
@@ -49,8 +68,9 @@
                     this.$message(data.ret)
                 }
                 else {
-                    console.log(data.ret)
-                    // window.location.href = '/index.html'
+                    this.setUserInfo(data.ret)
+                    this.setLoginTime(new Date().getTime())
+                    window.location.href = '/index.html'
                 }
             },
         }

@@ -13,7 +13,9 @@
     "fecha": "^3.0.2",
     "flyio": "^0.6.9",
     "vue": "^2.5.21",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.0",
+    "vuex-persist": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",

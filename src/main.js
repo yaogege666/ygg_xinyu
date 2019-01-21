@@ -10,6 +10,7 @@ import $utils from 'src/util/utils'
 import components from 'src/components/index'
 import http from 'src/util/http'
 import TableOption from './components/TableOption'
+import store from './store'
 
 Vue.config.productionTip = false
 /*安装ElementUI*/
@@ -65,6 +66,7 @@ $utils.addScript("https://at.alicdn.com/t/font_1012025_0zt1o4ecay8i.js")
 
 new Vue({
     router,
+    store,
     render: h => h(App),
     beforeCreate() {
         if (this.$route.path !== '/') {
