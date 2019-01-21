@@ -22,8 +22,7 @@
         </div>
         <Stu_evaluation/>
         <stu-echart/>
-        <stu-score/>
-      <stu_absence/>
+
 
     </div>
 </template>

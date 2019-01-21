@@ -85,6 +85,7 @@
     .stu-content-evaluation {
         width: 100%;
         height: 400px;
+        margin-top:80px;
         background-color: #eef5f9;
         .stu-evaluation {
             width: 1200px;

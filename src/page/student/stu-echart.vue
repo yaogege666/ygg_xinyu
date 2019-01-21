@@ -3,7 +3,6 @@
     <div class="stu-echart">
         <div class="stu-echart-header">本学期信誉评价得分汇总表</div>
         <div id="myChart"></div>
-
     </div>
 </template>
 
@@ -91,18 +90,18 @@
     .stu-echart {
         width: 100%;
         height: 430px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 35px;
+
+        margin-top: 60px;
         background-color: #eef5f9;
         #myChart {
             width: 60%;
             height: 430px;
             background-color: #eef5f9;
-            margin-left: 80px;
+            margin-left: 190px;
         }
         .stu-echart-header {
+            margin-left: 450px;
+            margin-bottom: 40px;
             font-size: 23px;
             color: black;
 

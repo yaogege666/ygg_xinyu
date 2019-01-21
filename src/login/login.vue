@@ -1,10 +1,5 @@
 <template>
     <div class="app-login">
-        <span>登录</span>
-        <br/>
-
-
-
         <button @click="login">login</button>
     </div>
 </template>

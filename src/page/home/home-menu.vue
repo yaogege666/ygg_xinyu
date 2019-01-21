@@ -24,6 +24,16 @@
                         icon: 'icon-xuesheng',
                     },
                     {
+                        name: '学生考评记录',
+                        path: '/student/stu-score',
+                        icon: 'icon-xuesheng',
+                    },
+                    {
+                        name: '学生请假记录',
+                        path: '/student/stu-absence-list',
+                        icon: 'icon-xuesheng',
+                    },
+                    {
                         name: '教师信息平台',
                         path: '/teacher/tea-content',
                         icon: 'icon-laoshi',
@@ -47,6 +57,7 @@
                         path: '/demo/demo-table',
                         icon: 'icon-table',
                     },
+
                 ]
             }
         },
