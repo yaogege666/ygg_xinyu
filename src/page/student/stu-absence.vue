@@ -7,6 +7,7 @@
             <el-form-item label="姓名" prop="name" style="width: 330px">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
+
             <el-form-item label="班级" prop="class_name" >
                 <el-select v-model="ruleForm.class_name" placeholder="请选择班级">
                     <el-option label="软件151" value="shanghai"></el-option>
@@ -44,9 +45,9 @@
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">提交请假申请</el-button>
                 <el-button @click="resetForm('ruleForm')">重置</el-button>
+                <el-button class="button" @click="back" type="primary">返回请假列表</el-button>
             </el-form-item>
         </el-form>
-       <stu-absence-list/>
     </div>
 
 </template>
@@ -87,6 +88,9 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+            back() {
+                this.$lv.push('/student/stu-absence-list')
             }
         }
     }
@@ -95,8 +99,11 @@
 <style lang="scss">
     .stu-content-absence {
         width: 100%;
-        height: 800px;
+        height: 600px;
         margin-top: 50px;
         background-color: #eef5f9;
+        .button {
+            margin-left: 20px;
+        }
     }
 </style>

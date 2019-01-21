@@ -22,7 +22,7 @@
             </div>
         </div>
         <tea_echart/>
-
+       <tea-check/>
         <tea-score/>
         <tea-score-list/>
     </div>
