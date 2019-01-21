@@ -1,5 +1,5 @@
 <template>
-    <div class="app app-login">
+    <div class="app app-login" :style='{backgroundImage:`url("${loginBg}")`}'>
         <div class="app-login-logo">
             <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1977194884,2248255532&fm=58&bpow=823&bpoh=823" class="logo">
             <img :src="logoName" class="logo-name">
@@ -30,12 +30,28 @@
                 },
 
                 isLogin: true,
-                logoName: require('src/asserts/logo.png')
+                logoName: require('src/asserts/logo.png'),
+                loginBg: require('src/asserts/login-bg.jpg'),
             }
         },
         methods: {
-            login() {
-                window.location.href = '/index.html'
+            async login() {
+                if (!this.user.username) {
+                    this.$message("用户名不能为空")
+                    return
+                }
+                if (!this.user.password) {
+                    this.$message("密码不能为空")
+                    return
+                }
+                const data = await this.$http.post('user/login', this.user)
+                if (data.code !== 0) {
+                    this.$message(data.ret)
+                }
+                else {
+                    console.log(data.ret)
+                    // window.location.href = '/index.html'
+                }
             },
         }
     }
@@ -43,7 +59,6 @@
 
 <style lang="scss">
     .app-login {
-        background-image: url("http://demo.cssmoban.com/cssthemes4/azds_registration-forms/form-1/assets/img/backgrounds/1@2x.jpg");
         user-select: none;
         .app-login-logo {
             float: left;
