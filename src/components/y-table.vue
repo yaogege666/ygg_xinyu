@@ -25,13 +25,16 @@
             option: {},
         },
         data() {
-            return {}
+            return {
+                columns: null,
+            }
         },
         async mounted() {
             this.option.table = this.$refs.table
             if (!!this.option) {
                 await this.option.reload()
             }
+            this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn')
         },
         methods: {
             p_select(selection, row) {

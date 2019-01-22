@@ -76,3 +76,13 @@ new Vue({
         }
     },
 }).$mount('#app')
+
+
+import {TableColumn} from 'element-ui'
+
+TableColumn.mixins = TableColumn.mixins || []
+TableColumn.mixins.push({
+    props: {
+        search: {type: String, default: 'input'},
+    }
+})
