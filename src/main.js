@@ -78,11 +78,24 @@ new Vue({
 }).$mount('#app')
 
 
-import {TableColumn} from 'element-ui'
+import {TableColumn, Input} from 'element-ui'
 
 TableColumn.mixins = TableColumn.mixins || []
 TableColumn.mixins.push({
     props: {
         search: {type: String, default: 'input'},
     }
+})
+Input.mixins = Input.mixins || []
+Input.push({
+    props: {
+        listenKeyboard: {},
+    },
+    mounted() {
+        if (!!this.listenKeyboard) {
+            this.$refs.input.addEventListener('keyup', e => {
+
+            })
+        }
+    },
 })

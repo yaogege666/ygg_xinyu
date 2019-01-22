@@ -9,7 +9,7 @@
             </el-option>
         </el-select>
         <component :is="`y-table-filter-${searchType}`" class="y-table-filter-component"></component>
-        <el-button>查询</el-button>
+        <el-button> <y-icon icon="icon-search"/> 查询</el-button>
     </div>
 </template>
 
@@ -61,5 +61,12 @@
         .y-table-filter-component {
             width: 350px;
         }
+        input, button ,.el-date-editor{
+            border: none;
+        }
+        border: 1px solid #dcdfe6;
+        box-sizing: border-box;
+        padding: 1px;
+        border-radius: 4px;
     }
 </style>
