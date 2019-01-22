@@ -85,7 +85,7 @@
                 padding: 12px 0;
                 font-size: 14px;
                 letter-spacing: 3px;
-                .lv-icon {
+                .y-icon {
                     margin-right: 12px;
                 }
             }

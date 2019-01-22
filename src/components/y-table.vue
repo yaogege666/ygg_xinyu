@@ -1,6 +1,6 @@
 <template>
-    <el-card class="lv-table" v-if="!!option">
-        <div class="lv-table-button">
+    <el-card class="y-table" v-if="!!option">
+        <div class="y-table-button">
             <slot name="button"></slot>
         </div>
         <el-table
@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        name: "lv-table",
+        name: "y-table",
         props: {
             option: {},
         },
@@ -60,11 +60,11 @@
 </script>
 
 <style lang="scss">
-    .lv-table {
+    .y-table {
         .el-pagination {
             margin-top: 20px;
         }
-        .lv-table-button {
+        .y-table-button {
             width: 100%;
             display: flex;
             align-items: center;
