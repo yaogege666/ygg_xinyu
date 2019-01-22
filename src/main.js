@@ -11,6 +11,7 @@ import components from 'src/components/index'
 import http from 'src/util/http'
 import TableOption from './components/TableOption'
 import store from './store'
+import lov from './util/lov'
 
 Vue.config.productionTip = false
 /*安装ElementUI*/
@@ -60,6 +61,7 @@ Vue.prototype.$lv = {
     }
 }
 Vue.prototype.$http = http
+Vue.prototype.$lov = lov
 Vue.prototype.$echarts = echarts
 
 $utils.addScript("https://at.alicdn.com/t/font_1012025_0zt1o4ecay8i.js")

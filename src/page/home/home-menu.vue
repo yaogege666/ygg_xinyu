@@ -53,6 +53,10 @@
                         name: '列表展示示例',
                         path: '/demo/demo-table',
                     },
+                    {
+                        name: '测试',
+                        path: '/demo/demo-test',
+                    },
 
                 ]
             }
