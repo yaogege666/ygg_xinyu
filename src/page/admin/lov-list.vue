@@ -58,6 +58,7 @@
                 this.dialogVisible = true
             },
             updateData() {
+                this.isInsert = false
                 this.formData = this.$lv.$utils.deepCopy(this.option.selectRow)
                 this.dialogVisible = true
             },
