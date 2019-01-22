@@ -1,9 +1,14 @@
 <template>
     <el-card class="lv-table" v-if="!!option">
-        <el-table :data="option.list"
-                  highlight-current-row
-                  style="width: 100%"
-                  height="600px">
+        <div class="lv-table-button">
+            <slot name="button"></slot>
+        </div>
+        <el-table
+                ref="table"
+                :data="option.list"
+                highlight-current-row
+                style="width: 100%"
+                height="600px">
             <el-table-column type="index" width="50"/>
             <slot></slot>
         </el-table>
@@ -21,8 +26,11 @@
         data() {
             return {}
         },
-        mounted() {
-            !!this.option && this.option.reload()
+        async mounted() {
+            this.option.table = this.$refs.table
+            if (!!this.option) {
+                await this.option.reload()
+            }
         },
     }
 </script>
@@ -31,6 +39,13 @@
     .lv-table {
         .el-pagination {
             margin-top: 20px;
+        }
+        .lv-table-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            height: 36px;
         }
     }
 </style>

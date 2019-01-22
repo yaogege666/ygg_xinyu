@@ -6,8 +6,12 @@ class TableOption {
     param = null
     page = 1
     pageSize = 10
+    sortField = 'createdAt'
+    sortDesc = true
 
     list = []
+
+    table = null
 
     constructor(option) {
         Object.assign(this, option)
@@ -17,7 +21,8 @@ class TableOption {
         const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {
             query: {
                 page: this.page,
-                pageSize: this.pageSize
+                pageSize: this.pageSize,
+                orders: [{field: this.sortField, desc: this.sortDesc}]
             }
         }))
         this.list = ret
@@ -26,7 +31,9 @@ class TableOption {
 
     async reload() {
         this.page = 1
-        return await this.load()
+        const ret = await this.load()
+        if (this.list.length > 0) this.table.setCurrentRow(this.list[0])
+        return ret
     }
 
 }
