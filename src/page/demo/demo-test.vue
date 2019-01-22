@@ -7,8 +7,10 @@
 </template>
 
 <script>
+    import YTableFilter from "../../components/y-table-filter";
     export default {
         name: "demo-test",
+        components: {YTableFilter},
         data() {
             return {
                 v: null

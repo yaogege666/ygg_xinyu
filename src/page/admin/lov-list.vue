@@ -9,7 +9,7 @@
             <el-table-column prop="id" label="编号" search="input"/>
             <el-table-column prop="label" label="显示值" search="lov"/>
             <el-table-column prop="code" label="代码" search="date"/>
-            <el-table-column prop="type" label="类型" search="input"/>
+            <el-table-column prop="type" label="类型" search="number"/>
         </y-table>
 
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">

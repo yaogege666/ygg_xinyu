@@ -1,7 +1,10 @@
 <template>
     <el-card class="y-table" v-if="!!option">
         <div class="y-table-button">
-            <slot name="button"></slot>
+            <y-table-filter :columns="columns"/>
+            <div>
+                <slot name="button"></slot>
+            </div>
         </div>
         <el-table
                 ref="table"
@@ -19,8 +22,11 @@
 </template>
 
 <script>
+    import YTableFilter from "./y-table-filter";
+
     export default {
         name: "y-table",
+        components: {YTableFilter},
         props: {
             option: {},
         },
@@ -34,7 +40,8 @@
             if (!!this.option) {
                 await this.option.reload()
             }
-            this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn')
+            this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn').filter(col => !!col.prop)
+            console.log(this.columns)
         },
         methods: {
             p_select(selection, row) {
@@ -71,7 +78,7 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
             height: 36px;
         }
     }
