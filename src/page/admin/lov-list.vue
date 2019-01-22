@@ -3,8 +3,8 @@
         <y-table :option="option">
             <div slot="button">
                 <el-button @click="newData">新建</el-button>
-                <el-button>删除</el-button>
-                <el-button>编辑</el-button>
+                <el-button @click="updateData">编辑</el-button>
+                <el-button @click="deleteData">删除</el-button>
             </div>
             <el-table-column prop="id" label="编号"/>
             <el-table-column prop="label" label="显示值"/>
@@ -57,6 +57,10 @@
                 this.formData = {}
                 this.dialogVisible = true
             },
+            updateData() {
+                this.formData = this.$lv.$utils.deepCopy(this.option.selectRow)
+                this.dialogVisible = true
+            },
             cancel() {
                 this.clear()
             },
@@ -72,8 +76,15 @@
             async update() {
                 await this.$http.post('lov/update', this.formData)
             },
-            async delete() {
-
+            async deleteData() {
+                await this.$confirm(`确认要删除第${this.option.selectIndex + 1}条记录吗？`, '警告', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                await this.$http.post('lov/delete', this.option.selectRow)
+                await this.option.reload()
+                this.$message({type: 'success', message: '删除成功!'});
             },
             clear() {
                 this.formData = {}

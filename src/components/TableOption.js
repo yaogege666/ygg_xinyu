@@ -12,9 +12,14 @@ class TableOption {
     list = []
 
     table = null
+    selectIndex = null
 
     constructor(option) {
         Object.assign(this, option)
+    }
+
+    get selectRow() {
+        return this.selectIndex == null ? null : this.list[this.selectIndex]
     }
 
     async load() {

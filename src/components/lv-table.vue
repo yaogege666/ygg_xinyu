@@ -8,7 +8,9 @@
                 :data="option.list"
                 highlight-current-row
                 style="width: 100%"
-                height="600px">
+                height="600px"
+                @current-change="p_select">
+
             <el-table-column type="index" width="50"/>
             <slot></slot>
         </el-table>
@@ -32,6 +34,13 @@
                 await this.option.reload()
             }
         },
+        methods: {
+            p_select(selection, row) {
+                if (!!selection) {
+                    this.option.selectIndex = this.option.list.indexOf(selection)
+                }
+            },
+        }
     }
 </script>
 
