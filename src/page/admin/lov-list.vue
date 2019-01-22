@@ -26,7 +26,7 @@
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
-            <el-button slot="footer" @click="dialogVisible = false">取消</el-button>
+            <el-button slot="footer" @click="cancel">取消</el-button>
         </el-dialog>
     </div>
 </template>
@@ -70,6 +70,7 @@
                 await this.option.reload()
                 this.dialogVisible = false
                 this.clear()
+                return ret
             },
             async insert() {
                 await this.$http.post('lov/insert', this.formData)

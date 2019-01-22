@@ -18,9 +18,13 @@ class TableOption {
         Object.assign(this, option)
     }
 
-    get selectRow() {
-        return this.selectIndex == null ? null : this.list[this.selectIndex]
-    }
+    /*@formatter:off*/
+    get selectRow() {return this.selectIndex == null ? null : this.list[this.selectIndex]}
+    _count=0;
+    noMore=false;
+    get count(){return !!this.noMore?this._count:(this.page*this.pageSize+1)}
+    /*@formatter:on*/
+
 
     async load() {
         const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {
@@ -30,14 +34,20 @@ class TableOption {
                 orders: [{field: this.sortField, desc: this.sortDesc}]
             }
         }))
+        if (ret.length < this.pageSize) {
+            this.noMore = true
+            this._count = (this.page - 1) * this.pageSize + ret.length
+        }
+        if (ret.length === 0) return
+
         this.list = ret
+        if (this.list.length > 0) this.table.setCurrentRow(this.list[0])
         return ret
     }
 
     async reload() {
         this.page = 1
         const ret = await this.load()
-        if (this.list.length > 0) this.table.setCurrentRow(this.list[0])
         return ret
     }
 
