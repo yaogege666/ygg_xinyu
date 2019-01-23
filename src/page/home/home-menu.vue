@@ -4,7 +4,6 @@
              :class="{'home-menu-item-active':currentPath === item.path}"
              v-for="(item,index) in menus" :key="index" @click="go(item)">
             <div class="home-menu-item-content">
-                <y-icon :icon="item.icon"/>
                 <span>{{item.name}}</span>
             </div>
         </div>
@@ -26,26 +25,25 @@
                     {
                         name: '学生考评记录',
                         path: '/student/stu-score',
-                        icon: 'icon-xuesheng',
                     },
                     {
                         name: '学生请假记录',
                         path: '/student/stu-absence-list',
-                        icon: 'icon-xuesheng',
                     },
                     {
                         name: '教师信息平台',
                         path: '/teacher/tea-content',
-                        icon: 'icon-laoshi',
                     }, {
                         name: '巡视人员平台',
                         path: '/patrol/patrol',
-                        icon: 'icon-teacher',
                     },
                     {
                         name: '管理员平台',
                         path: '/admin/admin',
-                        icon: 'icon-guanliyuan',
+                    },
+                    {
+                        name: '值列表管理',
+                        path: '/admin/lov-list',
                     },
                     {
                         name: '角色管理平台',
@@ -55,12 +53,14 @@
                     {
                         name: 'http请求示例',
                         path: '/demo/demo-http',
-                        icon: 'icon-web3',
                     },
                     {
                         name: '列表展示示例',
                         path: '/demo/demo-table',
-                        icon: 'icon-table',
+                    },
+                    {
+                        name: '测试',
+                        path: '/demo/demo-test',
                     },
 
                 ]
@@ -85,16 +85,16 @@
         height: 100%;
         padding: 12px 0;
         margin-right: 12px;
-        box-shadow: 0 0 6px gray;
+        box-shadow: 0 0 6px #ddd;
         .home-menu-item {
             padding-left: 12px;
             cursor: pointer;
             .home-menu-item-content {
-                border-bottom: solid 1px #d7dfe2;
+                border-bottom: solid 1px #f2f2f2;
                 padding: 12px 0;
                 font-size: 14px;
                 letter-spacing: 3px;
-                .lv-icon {
+                .y-icon {
                     margin-right: 12px;
                 }
             }

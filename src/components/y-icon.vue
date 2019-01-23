@@ -1,12 +1,12 @@
 <template>
-    <svg class="lv-icon" aria-hidden="true">
+    <svg class="y-icon" aria-hidden="true">
         <use :xlink:href="`#${icon}`"></use>
     </svg>
 </template>
 
 <script>
     export default {
-        name: "lv-icon",
+        name: "y-icon",
         props: {
             icon: {},
         }
@@ -14,7 +14,7 @@
 </script>
 
 <style lang="scss">
-    .lv-icon {
+    .y-icon {
         width: 1em;
         height: 1em;
         vertical-align: -0.15em;
