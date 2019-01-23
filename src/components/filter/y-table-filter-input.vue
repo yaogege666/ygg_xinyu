@@ -16,7 +16,7 @@
         methods: {
             getFilter() {
                 return {
-                    value: this.searchValue,
+                    value: this.searchValue || '',
                     operator: '~',
                 }
             },

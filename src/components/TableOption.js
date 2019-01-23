@@ -49,6 +49,8 @@ class TableOption {
 
     async reload() {
         this.page = 1
+        this._count = 0
+        this.noMore = false
         const ret = await this.load()
         return ret
     }
