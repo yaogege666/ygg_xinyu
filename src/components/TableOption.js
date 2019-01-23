@@ -1,4 +1,5 @@
 import http from '../util/http'
+import $utils from "../util/utils";
 
 class TableOption {
 
@@ -13,6 +14,7 @@ class TableOption {
 
     table = null
     selectIndex = null
+    filter = null
 
     constructor(option) {
         Object.assign(this, option)
@@ -27,13 +29,13 @@ class TableOption {
 
 
     async load() {
-        const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {
-            query: {
-                page: this.page,
-                pageSize: this.pageSize,
-                orders: [{field: this.sortField, desc: this.sortDesc}]
-            }
-        }))
+        const query = {
+            page: this.page,
+            pageSize: this.pageSize,
+            orders: [{field: this.sortField, desc: this.sortDesc}],
+        }
+        !!this.filter && (query.filters = $utils.typeOf(this.filter) === 'array' ? this.filter : [this.filter])
+        const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {query}))
         if (ret.length < this.pageSize) {
             this.noMore = true
             this._count = (this.page - 1) * this.pageSize + ret.length

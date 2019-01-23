@@ -8,8 +8,11 @@
                     :value="item.prop">
             </el-option>
         </el-select>
-        <component :is="`y-table-filter-${searchType}`" class="y-table-filter-component"></component>
-        <el-button> <y-icon icon="icon-search"/> 查询</el-button>
+        <component :is="`y-table-filter-${searchType}`" class="y-table-filter-component" ref="filter" @confirm="confirm" :field="searchField" :lov="!!column?column.lov:null"/>
+        <el-button @click="confirm">
+            <y-icon icon="icon-search"/>
+            查询
+        </el-button>
     </div>
 </template>
 
@@ -39,6 +42,14 @@
             }
         },
         computed: {
+            column() {
+                if (!this.columns || this.columns.length === 0) return
+                for (let i = 0; i < this.columns.length; i++) {
+                    const column = this.columns[i];
+                    if (column.prop === this.searchField) return column
+                }
+                return null
+            },
             searchType() {
                 if (!this.columns || this.columns.length === 0) return 'input'
                 for (let i = 0; i < this.columns.length; i++) {
@@ -48,6 +59,19 @@
                 return 'input'
             },
         },
+        methods: {
+            confirm() {
+                const filter = this.$refs.filter.getFilter()
+                switch (this.$lv.$utils.typeOf(filter)) {
+                    case 'object':
+                        filter.field = this.searchField
+                        break
+                    case 'array':
+                        filter.forEach(item => item.field = this.searchField)
+                }
+                this.$emit('confirm', filter)
+            },
+        }
     }
 </script>
 
@@ -61,7 +85,7 @@
         .y-table-filter-component {
             width: 350px;
         }
-        input, button ,.el-date-editor{
+        input, button, .el-date-editor {
             border: none;
         }
         border: 1px solid #dcdfe6;

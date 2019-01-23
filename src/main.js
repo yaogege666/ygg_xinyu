@@ -84,17 +84,34 @@ TableColumn.mixins = TableColumn.mixins || []
 TableColumn.mixins.push({
     props: {
         search: {type: String, default: 'input'},
+        lov: {type: String},
     }
 })
 Input.mixins = Input.mixins || []
-Input.push({
+Input.mixins.push({
     props: {
-        listenKeyboard: {},
+        listenKeyboard: {type: Boolean},
     },
     mounted() {
         if (!!this.listenKeyboard) {
-            this.$refs.input.addEventListener('keyup', e => {
-
+            this.$refs.input.addEventListener('keydown', e => {
+                switch (e.keyCode) {
+                    case 13:
+                        this.$emit('enter')
+                        break;
+                    case 38:
+                        this.$emit('up')
+                        break;
+                    case 40:
+                        this.$emit('down')
+                        break;
+                    case 37:
+                        this.$emit('left')
+                        break;
+                    case 39:
+                        this.$emit('right')
+                        break;
+                }
             })
         }
     },

@@ -1,7 +1,7 @@
 <template>
     <el-card class="y-table" v-if="!!option">
         <div class="y-table-button">
-            <y-table-filter :columns="columns"/>
+            <y-table-filter :columns="columns" @confirm="p_filterChange"/>
             <div>
                 <slot name="button"></slot>
             </div>
@@ -41,7 +41,6 @@
                 await this.option.reload()
             }
             this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn').filter(col => !!col.prop)
-            console.log(this.columns)
         },
         methods: {
             p_select(selection, row) {
@@ -64,6 +63,10 @@
                 }
                 this.option.page++
                 await this.option.load()
+            },
+            async p_filterChange(filter) {
+                this.option.filter = filter
+                await this.option.reload()
             },
         }
     }
