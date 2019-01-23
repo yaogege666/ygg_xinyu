@@ -15,7 +15,7 @@
 
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
 
-            <el-form label-width="80px" label-position="left" :rules="rules" :model="formData">
+            <el-form label-width="80px" label-position="left" :rules="rules" :model="formData" ref="form">
                 <el-form-item label="显示值" prop="label">
                     <el-input v-model="formData.label"></el-input>
                 </el-form-item>
@@ -40,45 +40,44 @@
                 queryPage: 'lov/queryPage'
             })
             return {
-                formData: {},
-                isInsert: false,
-                dialogVisible: false,
-                option,
+                formData: {},                                                                                   //表单绑定的数据对象
+                isInsert: false,                                                                                //当前是否为新建状态
+                dialogVisible: false,                                                                           //对话框显示控制变量
+                option,                                                                                         //表格option
 
                 rules: {
-                    label: [{required: true, message: '请输入显示值', trigger: 'blur'},],
+                    label: [{required: true, message: '请输入显示值', trigger: 'blur'},],                        //表单校验规则
                     code: [{required: true, message: '请输入代码', trigger: 'blur'},],
                     type: [{required: true, message: '请输入类型', trigger: 'blur'},],
                 },
             }
         },
         methods: {
+            /**
+             * 新建数据
+             * @author  韦胜健
+             * @date    2019/1/23 14:55
+             */
             newData() {
                 this.isInsert = true
                 this.formData = {}
                 this.dialogVisible = true
             },
+            /**
+             * 编辑数据
+             * @author  韦胜健
+             * @date    2019/1/23 14:55
+             */
             updateData() {
                 this.isInsert = false
                 this.formData = this.$lv.$utils.deepCopy(this.option.selectRow)
                 this.dialogVisible = true
             },
-            cancel() {
-                this.clear()
-            },
-            async save() {
-                const ret = !!this.isInsert ? await this.insert() : await this.update()
-                await this.option.reload()
-                this.dialogVisible = false
-                this.clear()
-                return ret
-            },
-            async insert() {
-                await this.$http.post('lov/insert', this.formData)
-            },
-            async update() {
-                await this.$http.post('lov/update', this.formData)
-            },
+            /**
+             * 删除数据
+             * @author  韦胜健
+             * @date    2019/1/23 14:56
+             */
             async deleteData() {
                 await this.$confirm(`确认要删除第${this.option.selectIndex + 1}条记录吗？`, '警告', {
                     confirmButtonText: '确定',
@@ -89,6 +88,55 @@
                 await this.option.reload()
                 this.$message({type: 'success', message: '删除成功!'});
             },
+            /**
+             * 取消，关闭对话框
+             * @author  韦胜健
+             * @date    2019/1/23 14:56
+             */
+            cancel() {
+                this.dialogVisible = false
+                this.clear()
+            },
+            /**
+             * 保存数据，根据当前是否为新建还是编辑状态进行操作
+             * @author  韦胜健
+             * @date    2019/1/23 14:57
+             */
+            async save() {
+                this.$refs.form.validate(async (valid) => {
+                    if (valid) {
+                        this.isInsert ? await this.insert() : await this.update()
+                        await this.option.reload()
+                        this.dialogVisible = false
+                        this.clear()
+                    } else {
+                        this.$message('请检查输入是否正确！')
+                        return false;
+                    }
+                });
+            },
+
+            /**
+             * 发送新建数据请求
+             * @author  韦胜健
+             * @date    2019/1/23 14:56
+             */
+            async insert() {
+                await this.$http.post('lov/insert', this.formData)
+            },
+            /**
+             * 发送更新数据请求
+             * @author  韦胜健
+             * @date    2019/1/23 14:56
+             */
+            async update() {
+                await this.$http.post('lov/update', this.formData)
+            },
+            /**
+             * 清空对话框表单数据
+             * @author  韦胜健
+             * @date    2019/1/23 14:57
+             */
             clear() {
                 this.formData = {}
             },
