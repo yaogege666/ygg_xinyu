@@ -6,11 +6,11 @@
                 <el-button @click="updateData">编辑</el-button>
                 <el-button @click="deleteData">删除</el-button>
             </div>
-            <el-table-column prop="id" label="编号" search="input" lov="1111"/>
-            <el-table-column prop="label" label="显示值" search="lov" lov="REASON"/>
-            <el-table-column prop="code" label="代码" search="date"/>
-            <el-table-column prop="type" label="类型" search="number"/>
-            <el-table-column prop="createdAt" label="创建时间" search="date"/>
+            <el-table-column prop="id" label="编号" search="input" lov="1111" sortable/>
+            <el-table-column prop="label" label="显示值" search="lov" lov="REASON" sortable/>
+            <el-table-column prop="code" label="代码" search="date" sortable/>
+            <el-table-column prop="type" label="类型" search="number" sortable/>
+            <el-table-column prop="createdAt" label="创建时间" search="date" sortable/>
         </y-table>
 
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">

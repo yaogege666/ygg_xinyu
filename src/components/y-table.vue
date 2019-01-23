@@ -11,7 +11,7 @@
                 :data="option.list"
                 highlight-current-row
                 style="width: 100%"
-                height="440px"
+                height="452px"
                 @current-change="p_select">
 
             <el-table-column type="index" width="50"/>
