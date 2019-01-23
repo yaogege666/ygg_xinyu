@@ -1,7 +1,7 @@
 <template>
     <div class="app app-login" :style='{backgroundImage:`url("${loginBg}")`}'>
         <div class="app-login-logo">
-            <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1977194884,2248255532&fm=58&bpow=823&bpoh=823" class="logo">
+            <img src="../asserts/school-logo.jpg" class="logo">
             <img :src="logoName" class="logo-name">
         </div>
         <div class="app-login-wrapper">
@@ -90,6 +90,8 @@
             height: 100%;
             .logo {
                 border-radius: 200px;
+                width: 150px;
+                height: 150px;
             }
             .logo-name {
                 width: 300px;

@@ -48,6 +48,11 @@
                         icon: 'icon-guanliyuan',
                     },
                     {
+                        name: '角色管理平台',
+                        path: '/admin/add-user',
+                        icon: 'icon-guanliyuan',
+                    },
+                    {
                         name: 'http请求示例',
                         path: '/demo/demo-http',
                         icon: 'icon-web3',
