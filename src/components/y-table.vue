@@ -12,6 +12,7 @@
                 highlight-current-row
                 style="width: 100%"
                 height="452px"
+                @sort-change="p_sortChange"
                 @current-change="p_select">
 
             <el-table-column type="index" width="50"/>
@@ -66,6 +67,11 @@
             },
             async p_filterChange(filter) {
                 this.option.filter = filter
+                await this.option.reload()
+            },
+            async p_sortChange({column, prop, order}) {
+                this.option.sortField = prop || 'createdAt'
+                this.option.sortDesc = order === 'descending'
                 await this.option.reload()
             },
         }
