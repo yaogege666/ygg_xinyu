@@ -10,10 +10,15 @@
             <el-table-column prop="name" label="姓名" search="input" sortable="custom"/>
             <el-table-column prop="username" label="用户名" search="input" sortable="custom"/>
             <el-table-column prop="code" label="学号/工号" search="input" sortable="custom"/>
-            <el-table-column prop="role" label="角色" search="input" sortable="custom"/>
+            <el-table-column prop="role" label="角色" search="lov" lov="ROLE" sortable="custom">
+                <template slot-scope="{row}">
+                    <y-lov-text :value="row.role" type="ROLE"/>
+                </template>
+            </el-table-column>
             <el-table-column prop="tel" label="电话号码" search="input" sortable="custom"/>
             <el-table-column prop="email" label="邮箱地址" search="input" sortable="custom"/>
             <el-table-column prop="className" label="所属班级" search="input" sortable="custom"/>
+            <el-table-column prop="createdAt" label="创建时间" search="date" sortable="custom"/>
         </y-table>
 
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">

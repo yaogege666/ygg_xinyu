@@ -3,6 +3,7 @@
         <el-button>value:{{v}}</el-button>
         <y-lov type="REASON" v-model="v"/>
         <y-lov type="REASON" value="skipping"/>
+        <y-lov-text type="REASON" value="skipping"/>
 
         <el-date-picker
                 :value="!!formData.startTime?[formData.startTime,formData.endTime]:null"

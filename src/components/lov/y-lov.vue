@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import {ValueMixin} from "../util/mixin";
+    import {ValueMixin} from "../../util/mixin";
 
     export default {
         name: "y-lov",

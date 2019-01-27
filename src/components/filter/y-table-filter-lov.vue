@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import YLov from "../y-lov";
+    import YLov from "../lov/y-lov";
 
     export default {
         name: "y-table-filter-lov",
