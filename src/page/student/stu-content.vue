@@ -24,13 +24,14 @@
         <stu-echart/>
 
 
+
     </div>
 </template>
 <script>
     import Stu_evaluation from "./stu-evaluation";
     import StuEchart from "./stu-echart";
-    import Stu_absence from "./stu-absence";
-    import Stu_absence_list from "./stu-absence-list";
+    import Stu_absence from "./stu-leave";
+    import Stu_absence_list from "./stu-leave-list";
     import StuScore from "./stu-score";
 
     export default {
