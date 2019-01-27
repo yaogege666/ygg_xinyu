@@ -2,7 +2,7 @@
     <div class="admin">
         <div class="admin-class">课程管理</div>
         <div class="admin-user">
-            <span class="role">角色管理</span>
+            <span class="role">用户管理</span>
             <el-table
                     :data="tableData3"
                     height="250"

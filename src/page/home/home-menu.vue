@@ -18,28 +18,41 @@
                 currentPath: null,
                 menus: [
                     {
-                        name: '学生信息平台',
+                        name: '学生信息',
                         path: '/student/stu-content',
                         icon: 'icon-xuesheng',
                     },
                     {
-                        name: '学生考评记录',
+                        name: '考评记录',
                         path: '/student/stu-score',
                     },
                     {
-                        name: '学生请假记录',
-                        path: '/student/stu-absence-list',
+                        name: '请假记录',
+                        path: '/student/stu-leave-list',
                     },
                     {
-                        name: '教师信息平台',
+                        name: '教师信息',
                         path: '/teacher/tea-content',
-                    }, {
-                        name: '巡视人员平台',
+                    },
+                    {
+                        name: '学生请假审批',
+                        path: '/teacher/tea-check',
+                    },
+                    {
+                        name: '学生信誉记录考评',
+                        path: '/teacher/tea-score-list',
+                    },
+                    {
+                        name: '巡视人员',
                         path: '/patrol/patrol',
                     },
                     {
-                        name: '管理员平台',
+                        name: '管理员',
                         path: '/admin/admin',
+                    },
+                    {
+                        name: '班级管理',
+                        path: '/admin/cls-list',
                     },
                     {
                         name: '值列表管理',
@@ -47,10 +60,6 @@
                     },
                     {
                         name: '用户管理',
-                        path: '/admin/user-list',
-                    },
-                    {
-                        name: '角色管理平台',
                         path: '/admin/add-user',
                         icon: 'icon-guanliyuan',
                     },

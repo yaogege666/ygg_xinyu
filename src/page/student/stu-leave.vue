@@ -1,5 +1,5 @@
 <template>
-    <div class="stu-content-absence">
+    <div class="stu-leave">
         <el-form :model="ruleForm" ref="ruleForm" label-width="130px" class="demo-ruleForm">
             <el-form-item label="学号" prop="code" style="width: 330px">
                 <el-input v-model="ruleForm.code"></el-input>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import StuAbsenceList from "./stu-absence-list";
+    import StuAbsenceList from "./stu-leave-list";
     export default {
         name: "stu_absence",
         components: {StuAbsenceList},
@@ -63,8 +63,8 @@
                     code:'',
                     username: '',
                     class: '',
-                    absence_start_time:'',
-                    absence_end_time:'',
+                    leave_start_time:'',
+                    leave_end_time:'',
                     class_name: '',
                     absence_reason: '',
                     check_tea :'',
@@ -90,14 +90,14 @@
                 this.$refs[formName].resetFields();
             },
             back() {
-                this.$lv.push('/student/stu-absence-list')
+                this.$lv.push('/student/stu-leave-list')
             }
         }
     }
 </script>
 
 <style lang="scss">
-    .stu-content-absence {
+    .stu-leave {
         width: 100%;
         height: 600px;
         margin-top: 50px;
