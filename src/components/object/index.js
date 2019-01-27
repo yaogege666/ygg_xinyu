@@ -25,7 +25,6 @@ class ObjectService {
         this.Vue.prototype.$nextTick(async () => {
             Object.assign(this.instance, {option, confirm, cancel})
             this.instance.initialized = true
-            option.reload()
             this.instance.show()
         })
     }

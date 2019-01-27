@@ -8,6 +8,7 @@
             </div>
             <el-table-column prop="grade" label="年级" sortable="custom"/>
             <el-table-column prop="cls" label="班级" sortable="custom"/>
+            <el-table-column prop="teacherName" label="班级辅导员" sortable="custom"/>
 
         </y-table>
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
@@ -18,6 +19,9 @@
                 </el-form-item>
                 <el-form-item label="班级" prop="cls">
                     <el-input v-model="formData.cls"></el-input>
+                </el-form-item>
+                <el-form-item label="辅导员" prop="teacherId">
+                    <y-object-input :option="teacherOption" :map="{teacherId:'id',teacherName:'name'}" showKey="teacherName" :row="formData"/>
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
@@ -34,12 +38,28 @@
             const option = new TableOption({
                 queryPage: 'cls/queryPage'
             })
+            const teacherOption = new TableOption({
+                queryPage: 'user/queryPage',
+                filters: [
+                    {field: 'role', value: 'teacher'}
+                ],
+                render() {
+                    return (
+                        <div>
+                            <el-table-column prop="id" label="编号" sortable="custom"/>
+                            <el-table-column prop="name" label="姓名" sortable="custom"/>
+                            <el-table-column prop="code" label="工号" sortable="custom"/>
+                            <el-table-column prop="tel" label="联系电话" sortable="custom"/>
+                        </div>
+                    )
+                },
+            })
             return {
                 formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
                 option,                                                                                         //表格option
-
+                teacherOption,
                 rules: {
                     grade: [{required: true, message: '请输入年级', trigger: 'blur'},],                        //表单校验规则
                     cls: [{required: true, message: '请输入班级', trigger: 'blur'},],
@@ -56,8 +76,7 @@
                 this.isInsert = true
                 this.formData = {}
                 this.dialogVisible = true
-                this.$refs.form.clearValidate()
-
+                !!this.$refs.form && this.$refs.form.clearValidate()
             },
             /**
              * 编辑数据
@@ -68,7 +87,7 @@
                 this.isInsert = false
                 this.formData = this.$lv.$utils.deepCopy(this.option.selectRow)
                 this.dialogVisible = true
-                this.$refs.form.clearValidate()
+                !!this.$refs.form && this.$refs.form.clearValidate()
             },
             /**
              * 删除数据

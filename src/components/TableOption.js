@@ -11,6 +11,7 @@ class TableOption {
     sortDesc = true
     indexing = true
     multiSelect = false
+    filters = []
 
     list = []
 
@@ -36,7 +37,11 @@ class TableOption {
             pageSize: this.pageSize,
             orders: [{field: this.sortField, desc: this.sortDesc}],
         }
-        !!this.filter && (query.filters = $utils.typeOf(this.filter) === 'array' ? this.filter : [this.filter])
+        let filters = []
+        !!this.filters && this.filters.length > 0 && (filters = filters.concat(this.filters))
+        !!this.filter && (filters = filters.concat($utils.typeOf(this.filter) === 'array' ? this.filter : [this.filter]))
+        query.filters = filters
+
         const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {query}))
         if (ret.length < this.pageSize) {
             this.noMore = true
