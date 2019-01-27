@@ -1,8 +1,14 @@
 <template>
     <div class="demo-object">
-        <el-button @click="service1">service1</el-button>
-        <el-button @click="service2">service2</el-button>
-        selectRow:{{selectRow}}
+        <div>
+            <el-button @click="service1">service1</el-button>
+            <el-button @click="service2">service2</el-button>
+            selectRow:{{selectRow}}
+        </div>
+        <div style="width: 300px">
+            <y-object-input :option="inputOption" :map="{name:'label',tId:'id'}" showKey="name" :row="dataRow"/>
+        </div>
+        dataRow{{dataRow}}
     </div>
 </template>
 
@@ -10,8 +16,26 @@
     export default {
         name: "demo-object",
         data() {
+            const inputOption = new TableOption({
+                queryPage: 'lov/queryPage',
+                render() {
+                    return (
+                        <template>
+                            <el-table-column prop="id" label="编号"/>
+                            <el-table-column prop="label" label="显示值"/>
+                            <el-table-column prop="code" label="代码"/>
+                            <el-table-column prop="type" label="类型"/>
+                        </template>
+                    )
+                },
+            })
             return {
-                selectRow: null
+                selectRow: null,
+                inputOption,
+                dataRow: {
+                    name: null,
+                    tId: null,
+                }
             }
         },
         methods: {
@@ -38,11 +62,11 @@
                     },
                 })
             },
-            service2(){
+            service2() {
                 this.$object.pick({
                     option: new TableOption({
                         queryPage: 'user/queryPage',
-                        multiSelect:true,
+                        multiSelect: true,
                         render() {
                             return (
                                 <template>
