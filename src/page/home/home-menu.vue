@@ -46,6 +46,10 @@
                         path: '/admin/lov-list',
                     },
                     {
+                        name: '用户管理',
+                        path: '/admin/user-list',
+                    },
+                    {
                         name: '角色管理平台',
                         path: '/admin/add-user',
                         icon: 'icon-guanliyuan',
