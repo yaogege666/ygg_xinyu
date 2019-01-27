@@ -10,7 +10,7 @@
             row: {type: Object, required: true},                        //绑定的row对象
             map: {type: Object, required: true},                        //row与选中的row的字段之间的映射规则，map对象中的key为row的key，map中的value为选中row的key
             showKey: {type: String, required: true},                    //row中用来显示在input中的key
-            option: {type: Object, required: true},                //表格option
+            option: {type: Object, required: true},                     //表格option
         },
         methods: {
             p_click() {
