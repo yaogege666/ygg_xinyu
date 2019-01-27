@@ -9,6 +9,8 @@ class TableOption {
     pageSize = 10
     sortField = 'createdAt'
     sortDesc = true
+    indexing = true
+    multiSelect = false
 
     list = []
 
