@@ -60,8 +60,7 @@
                     },
                     {
                         name: '用户管理',
-                        path: '/admin/add-user',
-                        icon: 'icon-guanliyuan',
+                        path: '/admin/user-list',
                     },
                     {
                         name: 'http请求示例',
