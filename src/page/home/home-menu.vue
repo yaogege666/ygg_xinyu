@@ -62,6 +62,10 @@
                         name: '测试',
                         path: '/demo/demo-test',
                     },
+                    {
+                        name: '对象选择示例',
+                        path: '/demo/demo-object',
+                    },
 
                 ]
             }

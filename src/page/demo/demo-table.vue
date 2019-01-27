@@ -1,10 +1,7 @@
 <template>
     <div class="demo-table">
         <y-table :option="option">
-            <el-table-column prop="id" label="编号"/>
-            <el-table-column prop="label" label="显示值"/>
-            <el-table-column prop="code" label="代码"/>
-            <el-table-column prop="type" label="类型"/>
+
         </y-table>
     </div>
 </template>
@@ -14,7 +11,17 @@
         name: "demo-table",
         data() {
             const option = new TableOption({
-                queryPage: 'lov/queryPage'
+                queryPage: 'lov/queryPage',
+                render() {
+                    return (
+                        <div>
+                            <el-table-column prop="id" label="编号"/>
+                            <el-table-column prop="label" label="显示值"/>
+                            <el-table-column prop="code" label="代码"/>
+                            <el-table-column prop="type" label="类型"/>
+                        </div>
+                    )
+                },
             })
             return {
                 option

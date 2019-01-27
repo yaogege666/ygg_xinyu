@@ -13,10 +13,15 @@
                 style="width: 100%"
                 height="452px"
                 @sort-change="p_sortChange"
-                @current-change="p_select">
-
-            <el-table-column type="index" width="50"/>
+                @current-change="p_currentChange"
+                @row-dblclick="p_rowDblclick"
+                @select="p_select"
+                @select-all="p_select">
+            <el-table-column type="index" width="50" v-if="option.indexing"/>
+            <el-table-column type="selection" width="55" v-if="option.multiSelect"/>
+            <el-table-column/>
             <slot></slot>
+            <pl-render-func :render-func="option.render" v-if="!!option.render"/>
         </el-table>
         <el-pagination layout="prev, pager, next" :total="option.count" @current-change="p_pageChange" @prev-click="p_prevPage" @next-click="p_nextPage"/>
     </el-card>
@@ -24,16 +29,18 @@
 
 <script>
     import YTableFilter from "./y-table-filter";
+    import PlRenderFunc from "./render/pl-render-func";
 
     export default {
         name: "y-table",
-        components: {YTableFilter},
+        components: {PlRenderFunc, YTableFilter},
         props: {
             option: {},
         },
         data() {
             return {
                 columns: null,
+                selectDatas: [],
             }
         },
         async mounted() {
@@ -44,10 +51,16 @@
             this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn').filter(col => !!col.prop)
         },
         methods: {
-            p_select(selection, row) {
+            p_currentChange(selection, row) {
                 if (!!selection) {
                     this.option.selectIndex = this.option.list.indexOf(selection)
                 }
+            },
+            p_rowDblclick(row, event) {
+                this.$emit('dblclick', {row, event})
+            },
+            p_select(selection, row) {
+                this.selectDatas = selection
             },
             async p_pageChange(page) {
                 this.option.page = page
