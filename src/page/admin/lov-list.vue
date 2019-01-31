@@ -51,6 +51,7 @@
                     type: [{required: true, message: '请输入类型', trigger: 'blur'},],
                 },
             }
+
         },
         methods: {
             /**

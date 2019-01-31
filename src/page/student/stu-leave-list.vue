@@ -8,9 +8,9 @@
             </div>
             <el-table-column prop="code" label="学号" sortable="custom"/>
             <el-table-column prop="leaveReason" label="请假原因" sortable="custom"/>
-            <el-table-column prop="leaveStartTime" label="请假开始时间" sortable="custom"/>
-            <el-table-column prop="leaveEndTime" label="请假结束时间" sortable="custom"/>
-            <el-table-column prop="courseId" label="课程" sortable="custom"/>
+            <el-table-column prop="startTime" label="请假开始时间" sortable="custom"/>
+            <el-table-column prop="endTime" label="请假结束时间" sortable="custom"/>
+            <el-table-column prop="classId" label="班级" sortable="custom"/>
             <el-table-column prop="checkTea" label="审核老师" sortable="custom"/>
             <el-table-column prop="checkStatus" label="审核状态" sortable="custom"/>
             <el-table-column prop="checkResult" label="审核结果" sortable="custom"/>
@@ -65,9 +65,7 @@
                 queryPage: 'leave/queryPage'
             })
             return {
-                formData: {
-
-                },                                                                                   //表单绑定的数据对象
+                formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
                 option,                                                                                         //表格option
@@ -84,8 +82,10 @@
              * @date    2019/1/23 14:55
              */
             dateRangeChange(array) {
-                this.formData.startTime = !!array ? array[0] : null
-                this.formData.endTime = !!array ? array[1] : null
+                this.$set(this.formData, 'startTime', !!array ? array[0] : null)
+                this.$set(this.formData, 'endTime', !!array ? array[1] : null)
+                // this.formData.startTime = !!array ? array[0] : null
+                // this.formData.endTime = !!array ? array[1] : null
             },
             /**
              * 新建数据

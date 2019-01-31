@@ -6,7 +6,10 @@
             selectRow:{{selectRow}}
         </div>
         <div style="width: 300px">
-            <y-object-input :option="inputOption" :map="{name:'label',tId:'id'}" showKey="name" :row="dataRow"/>
+            <y-object-input :option="inputOption"
+                            :map="{name:'label',tId:'id'}"
+                            showKey="name"
+                            :row="dataRow"/>
         </div>
         dataRow{{dataRow}}
     </div>
@@ -16,6 +19,7 @@
     export default {
         name: "demo-object",
         data() {
+            /*Vue JSX*/
             const inputOption = new TableOption({
                 queryPage: 'lov/queryPage',
                 render() {
