@@ -7,12 +7,8 @@
                 <el-button @click="updateData">编辑</el-button>
                 <el-button @click="deleteData">删除</el-button>
             </div>
-            <el-table-column prop="courseName" label="课程名字" search="input" sortable="custom"/>
-            <el-table-column prop="teacher" label="授课老师" search="lov" lov="ROLE" sortable="custom">
-                <template slot-scope="{row}">
-                    <y-lov-text :value="row.role.teacherName" type="ROLE"/>
-                </template>
-            </el-table-column>
+            <el-table-column prop="name" label="课程名字" search="input" sortable="custom"/>
+            <el-table-column prop="teacherName" label="任课老师" search="input" sortable="custom"/>
         </y-table>
 
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
@@ -21,11 +17,11 @@
                 <el-form-item label="课程名称" prop="name">
                     <el-input v-model="formData.name"></el-input>
                 </el-form-item>
-                <el-form-item label="选择任课老师" prop="teacher">
+                <el-form-item label="任课老师" prop="teacherName">
                     <y-object-input :row="formData"
-                                    :map="{classId:'id',className:'fullName'}"
-                                    :option="clsOption"
-                                    showKey="className"/>
+                                    :map="{teacherId:'id',teacherName:'name'}"
+                                    :option="teacherOption"
+                                    showKey="teacherName"/>
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
@@ -39,27 +35,31 @@
         name: "course",
         data() {
             const option = new TableOption({
-                queryPage: 'user/queryPage'
+                queryPage: 'course/queryPage'
             })
-            const clsOption = new TableOption({
-                queryPage: 'cls/queryPage',
+            const teacherOption = new TableOption({
+                queryPage: 'user/queryPage',
+                filters: [
+                    {field: 'role', value: 'teacher'}
+                ],
                 render() {
                     return (
                         <div>
-                            <el-table-column prop="fullName" label="班级" search="input" sortable="custom"/>
+                            <el-table-column prop="code" label="工号" sortable="custom"/>
+                            <el-table-column prop="name" label="老师名称" sortable="custom"/>
                         </div>
                     )
                 },
             })
             return {
                 option,
-                clsOption,
+                teacherOption,
                 formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
                 rules: {
-                    grade: [{required: true, message: '请输入年级', trigger: 'blur'},],                        //表单校验规则
-                    cls: [{required: true, message: '请输入班级', trigger: 'blur'},],
+                    name: [{required: true, message: '请输入课程名称', trigger: 'change'},],                        //表单校验规则
+                    teacherName: [{required: true, message: '请输入老师名称', trigger: 'change'},],
                 },
             }
         },
@@ -97,7 +97,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 })
-                await this.$http.post('user/delete', this.option.selectRow)
+                await this.$http.post('course/delete', this.option.selectRow)
                 await this.option.reload()
                 this.$message({type: 'success', message: '删除成功!'});
             },
@@ -134,7 +134,7 @@
              * @date    2019/1/23 14:56
              */
             async insert() {
-                await this.$http.post('user/insert', this.formData)
+                await this.$http.post('course/insert', this.formData)
             },
             /**
              * 发送更新数据请求
@@ -142,7 +142,7 @@
              * @date    2019/1/23 14:56
              */
             async update() {
-                await this.$http.post('user/update', this.formData)
+                await this.$http.post('course/update', this.formData)
             },
             /**
              * 清空对话框表单数据
