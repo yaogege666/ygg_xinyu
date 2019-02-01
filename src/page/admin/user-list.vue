@@ -17,7 +17,7 @@
             </el-table-column>
             <el-table-column prop="tel" label="电话号码" search="input" sortable="custom"/>
             <el-table-column prop="email" label="邮箱地址" search="input" sortable="custom"/>
-            <el-table-column prop="classId" label="所属班级id" search="input" sortable="custom"/>
+            <!--<el-table-column prop="classId" label="所属班级id" search="input" sortable="custom"/>-->
             <el-table-column prop="className" label="所属班级" search="input" sortable="custom"/>
             <el-table-column prop="createdAt" label="创建时间" search="date" sortable="custom"/>
         </y-table>
