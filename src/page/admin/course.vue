@@ -21,7 +21,7 @@
                 <el-form-item label="课程名称" prop="name">
                     <el-input v-model="formData.name"></el-input>
                 </el-form-item>
-                <el-form-item label="选择任课老师" prop="classId" v-if="formData.role === 'student'">
+                <el-form-item label="选择任课老师" prop="teacher">
                     <y-object-input :row="formData"
                                     :map="{classId:'id',className:'fullName'}"
                                     :option="clsOption"
