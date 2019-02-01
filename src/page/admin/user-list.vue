@@ -17,7 +17,7 @@
             </el-table-column>
             <el-table-column prop="tel" label="电话号码" search="input" sortable="custom"/>
             <el-table-column prop="email" label="邮箱地址" search="input" sortable="custom"/>
-            <el-table-column prop="classId" label="所属班级id" search="input" sortable="custom"/>
+            <!--<el-table-column prop="classId" label="所属班级id" search="input" sortable="custom"/>-->
             <el-table-column prop="className" label="所属班级" search="input" sortable="custom"/>
             <el-table-column prop="createdAt" label="创建时间" search="date" sortable="custom"/>
         </y-table>
@@ -28,9 +28,9 @@
                 <el-form-item label="姓名" prop="name">
                     <el-input v-model="formData.name"></el-input>
                 </el-form-item>
-                <el-form-item label="用户名" prop="username">
+                <!--<el-form-item label="用户名" prop="username">
                     <el-input v-model="formData.username"></el-input>
-                </el-form-item>
+                </el-form-item>-->
                 <el-form-item label="学号/工号" prop="code">
                     <el-input v-model="formData.code"></el-input>
                 </el-form-item>
@@ -156,7 +156,7 @@
              * @date    2019/1/23 14:56
              */
             async insert() {
-                await this.$http.post('user/insert', this.formData)
+                await this.$http.post('user/addUser', this.formData)
             },
             /**
              * 发送更新数据请求

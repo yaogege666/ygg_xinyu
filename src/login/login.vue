@@ -15,7 +15,15 @@
                     <div class="app-login-content-login-button" @click="login">登录</div>
                 </div>
             </div>
+
+            <div class="app-fast-login">
+                <div class="app-fast-login-item" @click="fastLogin('T7365','289345')">老师</div>
+                <div class="app-fast-login-item" @click="fastLogin('S8394','283745')">学生</div>
+                <div class="app-fast-login-item" @click="fastLogin('P6273','394875')">巡视老师</div>
+                <div class="app-fast-login-item" @click="fastLogin('admin','123456')">管理员</div>
+            </div>
         </div>
+
     </div>
 </template>
 
@@ -73,6 +81,11 @@
                     window.location.href = '/index.html'
                 }
             },
+            async fastLogin(username, password) {
+                this.user.username = username
+                this.user.password = password
+                await  this.login()
+            },
         }
     }
 </script>
@@ -106,6 +119,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
 
             .app-login-form {
                 height: 400px;
@@ -159,6 +173,19 @@
 
                 }
             }
+        }
+        .app-fast-login {
+            width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            color: #4c74c4;
+            background-color: rgba(white, 0.3);
+            border-radius: $border-radius;
+            margin-top: 12px;
+            font-size: 12px;
+            cursor: pointer;
         }
     }
 </style>

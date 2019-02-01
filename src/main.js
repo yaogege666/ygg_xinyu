@@ -13,6 +13,7 @@ import TableOption from './components/TableOption'
 import store from './store'
 import lov from './util/lov'
 import ObjectService from './components/object'
+import UserUtil from './util/user'
 
 Vue.config.productionTip = false
 /*安装ElementUI*/
@@ -36,7 +37,8 @@ Vue.prototype.$lv = {
      *  @param      path    跳转的地址，示例：/teacher/teac_detail
      *  @param      query   跳转参数，获取参数方法，在组件中：this.$route.query
      */
-    push(path, query) {
+    async push(path, query) {
+        await UserUtil.checkLoginValid();
         /*路由跳转*/
         const next = () => this.$router.push({path, query})
         if (this.$router.options.routes.some(route => route.name === path)) {
@@ -61,10 +63,10 @@ Vue.prototype.$lv = {
         window.history.back()
     }
 }
-Vue.prototype.$http = http
-Vue.prototype.$lov = lov
-Vue.prototype.$echarts = echarts
-Vue.prototype.$object = new ObjectService(Vue)
+Vue.prototype.$http = http                                                          //http请求服务
+Vue.prototype.$lov = lov                                                            //值列表服务
+Vue.prototype.$echarts = echarts                                                    //图表
+Vue.prototype.$object = new ObjectService(Vue)                                      //对象选择服务
 
 $utils.addScript("https://at.alicdn.com/t/font_1012025_0zt1o4ecay8i.js")
 
@@ -72,7 +74,8 @@ new Vue({
     router,
     store,
     render: h => h(App),
-    beforeCreate() {
+    async beforeCreate() {
+        await UserUtil.checkLoginValid()
         if (this.$route.path !== '/') {
             this.$lv.push(this.$route.path)
         }
@@ -82,6 +85,7 @@ new Vue({
 
 import {TableColumn, Input} from 'element-ui'
 
+/*element的table column组件扩展*/
 TableColumn.mixins = TableColumn.mixins || []
 TableColumn.mixins.push({
     props: {
@@ -89,6 +93,8 @@ TableColumn.mixins.push({
         lov: {type: String},
     }
 })
+
+/*element的input组件扩展*/
 Input.mixins = Input.mixins || []
 Input.mixins.push({
     props: {

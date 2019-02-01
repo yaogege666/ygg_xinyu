@@ -47,7 +47,6 @@ class TableOption {
             this.noMore = true
             this._count = (this.page - 1) * this.pageSize + ret.length
         }
-        if (ret.length === 0) return
 
         this.list = ret
         if (this.list.length > 0) this.table.setCurrentRow(this.list[0])
