@@ -102,6 +102,7 @@
         padding: 12px 0;
         margin-right: 12px;
         box-shadow: 0 0 6px #ddd;
+        overflow-y: auto;
         .home-menu-item {
             padding-left: 12px;
             cursor: pointer;
