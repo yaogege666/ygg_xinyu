@@ -55,6 +55,10 @@
                         path: '/admin/cls-list',
                     },
                     {
+                        name: '课程管理',
+                        path: '/admin/course',
+                    },
+                    {
                         name: '值列表管理',
                         path: '/admin/lov-list',
                     },
