@@ -37,6 +37,7 @@
                     {name: '用户管理', path: '/admin/user-list',role:'admin'},
                     {name: '班级管理', path: '/admin/cls-list',role:'admin'},
                     {name: '值列表管理', path: '/admin/lov-list',role:'admin'},
+                    {name: '课程管理', path: '/admin/course',},
                     // {name: 'http请求示例', path: '/demo/demo-http',},
                     // {name: '列表展示示例', path: '/demo/demo-table',},
                     // {name: '测试', path: '/demo/demo-test',},
