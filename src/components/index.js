@@ -11,3 +11,20 @@ export default {
     objectInput,
     lovText,
 }
+
+export const TableOptionController = {
+    options: [],
+    add(option) {
+        this.options.push(option)
+    },
+    remove(option) {
+        const index = this.options.indexOf(option)
+        index !== -1 && (this.options.splice(index, 1))
+    },
+    getChildOptions(option) {
+        return this.options.reduce((ret, item) => {
+            item.parentOption === option && (ret.push(item))
+            return ret
+        }, [])
+    },
+}

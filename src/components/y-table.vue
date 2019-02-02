@@ -45,7 +45,8 @@
         },
         async mounted() {
             this.option.table = this.$refs.table
-            if (!!this.option) {
+            this.option.tableCreated = true
+            if (!!this.option && !this.option.parentOption) {
                 await this.option.reload()
             }
             this.columns = this.$lv.$utils.findComponentsDownward(this, 'ElTableColumn').filter(col => !!col.prop)
@@ -54,6 +55,7 @@
             p_currentChange(selection, row) {
                 if (!!selection) {
                     this.option.selectIndex = this.option.list.indexOf(selection)
+                    this.option.p_informChildReload()
                 }
             },
             p_rowDblclick(row, event) {

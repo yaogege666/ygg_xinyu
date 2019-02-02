@@ -34,8 +34,8 @@
                 <el-button @click="stuUpdateData">编辑</el-button>
                 <el-button @click="stuDeleteData">删除</el-button>
             </div>
-            <el-table-column prop="name" label="学生姓名" search="input" sortable="custom"/>
-            <el-table-column prop="className" label="学生班级" search="input" sortable="custom"/>
+            <el-table-column prop="userName" label="学生姓名" search="input" sortable="custom"/>
+            <el-table-column prop="userTeacherName" label="学生辅导员" search="input" sortable="custom"/>
         </y-table>
     </div>
 </template>
@@ -62,10 +62,11 @@
                 },
             })
             const studentOption = new TableOption({
-                queryPage: 'user/queryPage',
-                filters: [
-                    {field: 'role', value: 'student'}
-                ]
+                queryPage: 'interUserCourse/queryPage',
+                parentOption: option,
+                parentMap: {
+                    courseId: 'id'
+                }
             })
             return {
                 option,
