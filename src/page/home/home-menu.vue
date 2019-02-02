@@ -26,6 +26,7 @@
                     {name: '学生信息', path: '/student/stu-content',role:'student'},
                     {name: '考评记录', path: '/student/stu-score',role:'student'},
                     {name: '请假记录', path: '/student/stu-leave-list',role:'student'},
+                    {name: '我的课程', path: '/student/stu-course-list',role:'student'},
 
                     {name: '教师信息', path: '/teacher/tea-content',role:'teacher'},
                     {name: '学生请假审批', path: '/teacher/tea-check',role:'teacher'},
