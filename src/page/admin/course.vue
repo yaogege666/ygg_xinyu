@@ -31,7 +31,6 @@
         <y-table :option="studentOption">
             <div slot="button">
                 <el-button @click="stuNewData">新建</el-button>
-                <el-button @click="stuUpdateData">编辑</el-button>
                 <el-button @click="stuDeleteData">删除</el-button>
             </div>
             <el-table-column prop="userName" label="学生姓名" search="input" sortable="custom"/>
@@ -44,9 +43,11 @@
     export default {
         name: "course",
         data() {
+            /*课程option*/
             const option = new TableOption({
                 queryPage: 'course/queryPage'
             })
+            /*课程任课老师option*/
             const teacherOption = new TableOption({
                 queryPage: 'user/queryPage',
                 filters: [
@@ -61,6 +62,7 @@
                     )
                 },
             })
+            /*课程学生option*/
             const studentOption = new TableOption({
                 queryPage: 'interUserCourse/queryPage',
                 parentOption: option,
@@ -68,10 +70,31 @@
                     courseId: 'id'
                 }
             })
+            /*课程选择学生option*/
+            const studentPickOption = new TableOption({
+                queryPage: 'user/queryPage',
+                multiSelect: true,
+                filters: [
+                    {field: 'role', value: 'student'}
+                ],
+                render() {
+                    return (
+                        <div>
+                            <el-table-column prop="code" label="学号"/>
+                            <el-table-column prop="name" label="学生名称"/>
+                        </div>
+                    )
+                },
+                param: {
+                    queryType: '',
+                    queryValue: '',
+                },
+            })
             return {
                 option,
                 teacherOption,
                 studentOption,
+                studentPickOption,
                 formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
@@ -172,13 +195,27 @@
             },
 
             stuNewData() {
-
+                this.$object.pick({
+                    option: this.studentPickOption,
+                    confirm: async (data) => {
+                        const ret = data.map(item => ({
+                            courseId: this.option.selectRow.id,
+                            userId: item.id
+                        }))
+                        await this.$http.post('interUserCourse/multiInsert', ret)
+                        await this.studentOption.reload()
+                    },
+                })
             },
-            stuUpdateData() {
-
-            },
-            stuDeleteData() {
-
+            async stuDeleteData() {
+                await this.$confirm(`确认要删除第${this.studentOption.selectIndex + 1}条记录吗？`, '警告', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                })
+                await this.$http.post('interUserCourse/delete', this.studentOption.selectRow)
+                await this.studentOption.reload()
+                this.$message({type: 'success', message: '删除成功!'});
             },
         }
     }
