@@ -45,7 +45,8 @@
         data() {
             /*课程option*/
             const option = new TableOption({
-                queryPage: 'course/queryPage'
+                queryPage: 'course/queryPage',
+                param:{},
             })
             /*课程任课老师option*/
             const teacherOption = new TableOption({
@@ -195,6 +196,9 @@
             },
 
             stuNewData() {
+                this.studentPickOption.param.queryType = 'queryForCourse'
+                this.studentPickOption.param.queryValue = this.option.selectRow.id
+
                 this.$object.pick({
                     option: this.studentPickOption,
                     confirm: async (data) => {
