@@ -41,7 +41,7 @@
                     {name: '课程管理', path: '/admin/course',role:'admin'},
                     // {name: 'http请求示例', path: '/demo/demo-http',},
                     // {name: '列表展示示例', path: '/demo/demo-table',},
-                    // {name: '测试', path: '/demo/demo-test',},
+                    // {name: '测试', path: '/demo/demo-test',role:'all'},
                     // {name: '对象选择示例', path: '/demo/demo-object',},
                 ]
                 /*@formatter:on*/
@@ -57,7 +57,7 @@
             ...mapGetters(['userInfo']),
             menus() {
                 if (!this.userInfo) return []
-                return this.totalMenus.filter(item => item.role === this.userInfo.role)
+                return this.totalMenus.filter(item => item.role === 'all' || item.role === this.userInfo.role)
             },
         },
         mounted() {

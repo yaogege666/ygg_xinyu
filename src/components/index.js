@@ -3,6 +3,7 @@ import table from './y-table'
 import lov from './lov/y-lov'
 import objectInput from './object/y-object-input'
 import lovText from './lov/y-lov-text'
+import date from './date/y-date'
 
 export default {
     icon,
@@ -10,6 +11,7 @@ export default {
     lov,
     objectInput,
     lovText,
+    date,
 }
 
 export const TableOptionController = {

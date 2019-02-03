@@ -5,14 +5,9 @@
         <y-lov type="REASON" value="skipping"/>
         <y-lov-text type="REASON" value="skipping"/>
 
-        <el-date-picker
-                :value="!!formData.startTime?[formData.startTime,formData.endTime]:null"
-                @input="dateRangeChange"
-                value-format="yyyy-MM-dd"
-                type="daterange"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期">
-        </el-date-picker>
+        <y-date v-model="val" datetime/>
+        val:{{val}}
+        formData:{{formData}}
     </div>
 </template>
 
@@ -28,15 +23,15 @@
                 v: null,
 
                 formData: {
-                    startTime: null,
-                    endTime: null
+                    // startTime: null,
+                    // endTime: null
                 },
             }
         },
-        methods:{
-            dateRangeChange(array){
-                this.formData.startTime = !!array?array[0]:null
-                this.formData.endTime = !!array?array[1]:null
+        methods: {
+            dateRangeChange(array) {
+                this.formData.startTime = !!array ? array[0] : null
+                this.formData.endTime = !!array ? array[1] : null
             },
         }
     }

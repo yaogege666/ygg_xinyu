@@ -201,7 +201,7 @@ function oneOf(val, array) {
  * @param date 将要格式化的日期
  * @param format 格式化字符串
  */
-function dateFormat(date, format) {
+function dateFormat(date, format = "YYYY-MM-DD") {
     return fecha.format(date, format)
 }
 
@@ -212,7 +212,7 @@ function dateFormat(date, format) {
  * @param string 将要解析的字符串
  * @param format 格式化字符串
  */
-function dateParse(string, format) {
+function dateParse(string, format = "YYYY-MM-DD") {
     return fecha.parse(string, format)
 }
 

@@ -3,52 +3,42 @@
         <y-table :option="option">
             <div slot="button">
                 <el-button @click="newData">新建</el-button>
-                <el-button @click="updateData">编辑</el-button>
+                <!--<el-button @click="updateData">编辑</el-button>-->
                 <el-button @click="deleteData">删除</el-button>
             </div>
-            <el-table-column prop="code" label="学号" sortable="custom"/>
-            <el-table-column prop="leaveReason" label="请假原因" sortable="custom"/>
-            <el-table-column prop="startTime" label="请假开始时间" sortable="custom"/>
-            <el-table-column prop="endTime" label="请假结束时间" sortable="custom"/>
-            <el-table-column prop="classId" label="班级" sortable="custom"/>
-            <el-table-column prop="checkTea" label="审核老师" sortable="custom"/>
-            <el-table-column prop="checkStatus" label="审核状态" sortable="custom"/>
-            <el-table-column prop="checkResult" label="审核结果" sortable="custom"/>
-            <el-table-column prop="checkTime" label="审核时间" sortable="custom"/>
+            <el-table-column prop="reason" label="问题性质" search="lov" lov="LEAVE_REASON" sortable="custom">
+                <template slot-scope="{row}">
+                    <y-lov-text :value="row.reason" type="LEAVE_REASON"/>
+                </template>
+            </el-table-column>
+            <el-table-column prop="startTime" label="开始时间" sortable="custom"/>
+            <el-table-column prop="endTime" label="结束时间" sortable="custom"/>
+            <el-table-column prop="auditStatus" label="审核状态" search="lov" lov="LEAVE_STATUS" sortable="custom">
+                <template slot-scope="{row}">
+                    <y-lov-text :value="row.auditStatus" type="LEAVE_STATUS"/>
+                </template>
+            </el-table-column>
+            <!--<el-table-column prop="auditTeacherId" label="审批老师" sortable="custom"/>-->
+            <el-table-column prop="teacherName" label="审批老师" sortable="custom"/>
+            <el-table-column prop="auditResult" label="审核结果" sortable="custom"/>
+            <el-table-column prop="auditTime" label="审核时间" sortable="custom"/>
 
         </y-table>
         <el-dialog :visible.sync="dialogVisible" width="700px" :title="isInsert?'新建':'编辑'">
-            <el-form label-width="80px" label-position="left" :rules="rules" :model="formData" ref="form">
-                <el-form-item label="学号" prop="code" style="width: 330px">
-                    <el-input v-model="formData.code"></el-input>
-                </el-form-item>
-                <el-form-item label="请假原因" prop="absence_reason">
-                    <el-radio-group v-model="formData.leaveReason">
-                        <el-radio label="身体原因"></el-radio>
-                        <el-radio label="参加竞赛活动比赛等"></el-radio>
-                        <el-radio label="家中事务"></el-radio>
+            <el-form label-width="100px" label-position="left" :rules="rules" :model="formData" ref="form">
+                <el-form-item label="请假原因" prop="reason">
+                    <el-radio-group @change="p_reasonChange" v-model="reason">
+                        <el-radio v-for="(item,index) in leaveReasons" :key="index" :label="item.label" :value="item.code"/>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="课程" prop="course" style="width: 330px">
-                    <el-input v-model="formData.course"></el-input>
+                <el-form-item label="其他请假原因" prop="otherReason" v-if="formData.reason === 'OTHER'">
+                    <el-input v-model="formData.otherReason"/>
                 </el-form-item>
+
                 <el-form-item label="请假时间">
-                    <el-date-picker
-                            :value="!!formData.startTime?[formData.startTime,formData.endTime]:null"
-                            @input="dateRangeChange"
-                            value-format="yyyy-MM-dd"
-                            type="daterange"
-                            start-placeholder="开始日期"
-                            end-placeholder="结束日期">
-                    </el-date-picker>
-                    {{formData}}
+                    <y-date :start.sync="formData.startTime" :end.sync="formData.endTime" range datetime/>
                 </el-form-item>
-                <el-form-item label="审批老师" prop="checkTea">
-                    <el-select v-model="formData.checkTea" placeholder="请选择老师">
-                        <el-option label="高数老师" value="math"></el-option>
-                        <el-option label="英语老师" value="english"></el-option>
-                    </el-select>
-                </el-form-item>
+
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
             <el-button slot="footer" @click="cancel">取消</el-button>
@@ -58,6 +48,10 @@
 
 <script>
 
+    import {getModuleStore} from "../../util/store";
+
+    const {mapGetters} = getModuleStore("user")
+
     export default {
         name: "stu_leave_list",
         data() {
@@ -65,6 +59,9 @@
                 queryPage: 'leave/queryPage'
             })
             return {
+                leaveReasons: [],
+                reason: null,
+
                 formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
@@ -75,17 +72,21 @@
                 },
             }
         },
+        async created() {
+            this.leaveReasons = await this.$lov.getLovByType("LEAVE_REASON")
+        },
+        computed: {
+            ...mapGetters(["userInfo"]),
+        },
         methods: {
-            /**
-             * 日期的选择
-             * @author  韦胜健
-             * @date    2019/1/23 14:55
-             */
-            dateRangeChange(array) {
-                this.$set(this.formData, 'startTime', !!array ? array[0] : null)
-                this.$set(this.formData, 'endTime', !!array ? array[1] : null)
-                // this.formData.startTime = !!array ? array[0] : null
-                // this.formData.endTime = !!array ? array[1] : null
+            p_reasonChange(label) {
+                for (let i = 0; i < this.leaveReasons.length; i++) {
+                    const leaveReason = this.leaveReasons[i];
+                    if (leaveReason.label === label) {
+                        this.$set(this.formData, 'reason', leaveReason.code)
+                        return
+                    }
+                }
             },
             /**
              * 新建数据
@@ -94,7 +95,14 @@
              */
             newData() {
                 this.isInsert = true
-                this.formData = {}
+                const today = this.$lv.$utils.dateFormat(new Date())
+                this.formData = {
+                    startTime: today + ' 08:00:00',
+                    endTime: today + ' 18:00:00',
+                    auditTeacherId: this.userInfo.classTeacherId,
+                    teacherName: this.userInfo.classTeacherName,
+                    auditStatus: 'NEW',
+                }
                 this.dialogVisible = true
                 this.$nextTick(() => this.$refs.form.clearValidate())
             },
