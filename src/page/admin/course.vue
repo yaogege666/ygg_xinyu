@@ -34,6 +34,7 @@
                 <el-button @click="stuDeleteData">删除</el-button>
             </div>
             <el-table-column prop="userName" label="学生姓名" search="input" sortable="custom"/>
+            <el-table-column prop="className" label="班级" search="input" sortable="custom"/>
             <el-table-column prop="userTeacherName" label="学生辅导员" search="input" sortable="custom"/>
         </y-table>
     </div>
