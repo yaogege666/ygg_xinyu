@@ -11,6 +11,7 @@
                     <y-lov-text :value="row.reason" type="LEAVE_REASON"/>
                 </template>
             </el-table-column>
+            <el-table-column prop="otherReason" label="其他原因备注" sortable="custom"/>
             <el-table-column prop="startTime" label="开始时间" sortable="custom"/>
             <el-table-column prop="endTime" label="结束时间" sortable="custom"/>
             <el-table-column prop="auditStatus" label="审核状态" search="lov" lov="LEAVE_STATUS" sortable="custom">
@@ -22,6 +23,7 @@
             <el-table-column prop="teacherName" label="审批老师" sortable="custom"/>
             <el-table-column prop="auditResult" label="审核结果" sortable="custom"/>
             <el-table-column prop="auditTime" label="审核时间" sortable="custom"/>
+            <el-table-column prop="auditComment" label="审核备注" sortable="custom"/>
 
         </y-table>
         <el-dialog :visible.sync="dialogVisible" width="700px" :title="isInsert?'新建':'编辑'">
