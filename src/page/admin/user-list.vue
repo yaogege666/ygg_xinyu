@@ -69,6 +69,7 @@
                     return (
                         <div>
                             <el-table-column prop="fullName" label="班级" search="input" sortable="custom"/>
+                            <el-table-column prop="teacherName" label="辅导员" search="input" sortable="custom"/>
                         </div>
                     )
                 },

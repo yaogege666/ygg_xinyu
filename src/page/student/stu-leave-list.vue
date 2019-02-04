@@ -53,7 +53,10 @@
         name: "stu_leave_list",
         data() {
             const option = new TableOption({
-                queryPage: 'leave/queryPage'
+                queryPage: 'leave/queryPage',
+                filter: [
+                    {field: 'studentId', value: user.id}
+                ]
             })
             return {
                 leaveReasons: [],
@@ -72,8 +75,7 @@
         async created() {
             this.leaveReasons = await this.$lov.getLovByType("LEAVE_REASON")
         },
-        computed: {
-        },
+        computed: {},
         methods: {
             p_reasonChange(label) {
                 for (let i = 0; i < this.leaveReasons.length; i++) {
