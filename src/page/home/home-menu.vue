@@ -31,6 +31,8 @@
                     /*老师*/
                     {name: '教师信息', path: '/teacher/tea-content',role:'teacher'},
                     {name: '学生请假审批', path: '/teacher/approval-leave',role:'teacher'},
+                    {name: '我的班级', path: '/teacher/teacher-cls-list',role:'teacher'},
+                    {name: '我的课程', path: '/teacher/teacher-course-list',role:'teacher'},
                     /*巡视老师*/
                     {name: '学生信誉记录考评', path: '/teacher/tea-score-list',role:'patrol teacher'},
                     {name: '巡视人员', path: '/patrol/patrol',role:'patrol teacher'},
