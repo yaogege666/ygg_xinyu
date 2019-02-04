@@ -4,7 +4,7 @@
             <div slot="button">
                 <el-button @click="newData">新建</el-button>
                 <!--<el-button @click="updateData">编辑</el-button>-->
-                <el-button @click="deleteData">删除</el-button>
+                <el-button @click="revert">撤回</el-button>
             </div>
             <el-table-column prop="reason" label="问题性质" search="lov" lov="LEAVE_REASON" sortable="custom">
                 <template slot-scope="{row}">
@@ -21,7 +21,6 @@
             </el-table-column>
             <!--<el-table-column prop="auditTeacherId" label="审批老师" sortable="custom"/>-->
             <el-table-column prop="teacherName" label="审批老师" sortable="custom"/>
-            <el-table-column prop="auditResult" label="审核结果" sortable="custom"/>
             <el-table-column prop="auditTime" label="审核时间" sortable="custom"/>
             <el-table-column prop="auditComment" label="审核备注" sortable="custom"/>
 
@@ -50,10 +49,6 @@
 
 <script>
 
-    import {getModuleStore} from "../../util/store";
-
-    const {mapGetters} = getModuleStore("user")
-
     export default {
         name: "stu_leave_list",
         data() {
@@ -78,7 +73,6 @@
             this.leaveReasons = await this.$lov.getLovByType("LEAVE_REASON")
         },
         computed: {
-            ...mapGetters(["userInfo"]),
         },
         methods: {
             p_reasonChange(label) {
@@ -101,9 +95,10 @@
                 this.formData = {
                     startTime: today + ' 08:00:00',
                     endTime: today + ' 18:00:00',
-                    auditTeacherId: this.userInfo.classTeacherId,
-                    teacherName: this.userInfo.classTeacherName,
+                    auditTeacherId: user.classTeacherId,
+                    teacherName: user.classTeacherName,
                     auditStatus: 'NEW',
+                    studentId: user.id,
                 }
                 this.dialogVisible = true
                 this.$nextTick(() => this.$refs.form.clearValidate())
@@ -185,7 +180,21 @@
             clear() {
                 this.formData = {}
             },
-
+            /*
+             *  撤回请假记录
+             *  @author     martsforever
+             *  @datetime   2019/2/4 21:09
+             */
+            async revert() {
+                const data = this.option.selectRow
+                if (data.auditStatus !== 'NEW') {
+                    this.$message("只能撤回新建状态下的假条！")
+                    return
+                }
+                data.auditStatus = 'REVERT'
+                await this.$http.post('leave/update', data)
+                await this.option.reload()
+            },
         }
     }
 </script>
