@@ -14,6 +14,8 @@ class TableOption {
     multiSelect = false
     filters = []
 
+    beforeLoad = null
+
     parentOption = null
     parentMap = null
 
@@ -63,8 +65,11 @@ class TableOption {
             pageSize: this.pageSize,
             orders: [{field: this.sortField, desc: this.sortDesc}],
         }
+        !!this.beforeLoad && this.beforeLoad()
         query.filters = this._targetParam
-        const {ret} = await http.post(this.queryPage, Object.assign({}, this.param, {query}))
+        const param = Object.assign({}, this.param, {query})
+
+        const {ret} = await http.post(this.queryPage, param)
         if (ret.length < this.pageSize) {
             this.noMore = true
             this._count = (this.page - 1) * this.pageSize + ret.length
@@ -91,6 +96,28 @@ class TableOption {
         this.noMore = false
         const ret = await this.load()
         return ret
+    }
+
+    setFilter({field, value, operator = '='}) {
+        for (let i = 0; i < this.filters.length; i++) {
+            const filter = this.filters[i];
+            if (filter.field === field) {
+                filter.value = value
+                filter.operator = operator
+                return
+            }
+        }
+        this.filters.push({field, value, operator})
+    }
+
+    removeFilter(field) {
+        for (let i = 0; i < this.filters.length; i++) {
+            const filter = this.filters[i];
+            if (filter.field === field) {
+                this.filters.splice(i, 1)
+                i--
+            }
+        }
     }
 
 }

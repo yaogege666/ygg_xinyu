@@ -6,40 +6,41 @@
                 <el-button @click="updateData">编辑</el-button>
                 <el-button @click="deleteData">删除</el-button>
             </div>
-            <el-table-column prop="name" label="学生姓名" search="input" sortable="custom"/>
-            <el-table-column prop="className" label="学生班级" search="input" sortable="custom"/>
-            <el-table-column prop="reason" label="问题性质" search="lov" lov="REASON" sortable="custom">
+            <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom"/>
+            <el-table-column prop="courseTeacherName" label="任课老师" search="input" sortable="custom"/>
+            <el-table-column prop="studentName" label="学生姓名" search="input" sortable="custom"/>
+            <el-table-column prop="studentClassName" label="学生班级" search="input" sortable="custom"/>
+            <el-table-column prop="studentTeacherName" label="学生辅导员" search="input" sortable="custom"/>
+            <el-table-column prop="reason" label="考评性质" search="lov" lov="REASON" sortable="custom">
                 <template slot-scope="{row}">
-                    <y-lov-text :value="row.reason" type="REASON"/>
+                    <y-lov-text :value="row.type" type="REASON"/>
                 </template>
             </el-table-column>
-            <el-table-column prop="addScore" label="学生加分" search="input" sortable="custom"/>
-            <el-table-column prop="decrease" label="学生减分" search="input" sortable="custom"/>
-            <el-table-column prop="suggestions" label="老师建议" sortable="custom"/>
+            <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
+            <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
         </y-table>
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
 
             <el-form label-width="80px" label-position="left" :rules="rules" :model="formData" ref="form">
-                <el-form-item label="学生姓名" prop="name">
-                    <el-input v-model="formData.name"></el-input>
+                <el-form-item label="课程" prop="courseName">
+                    <y-object-input :option="courseOption" :map="{courseId:'id',courseName:'name'}" showKey="courseName" :row="formData"/>
                 </el-form-item>
-                <el-form-item label="所属班级" prop="classId" >
-                    <y-object-input :row="formData"
-                                    :map="{classId:'id',className:'fullName'}"
-                                    :option="clsOption"
-                                    showKey="className"/>
+                <el-form-item label="学生" prop="courseName">
+                    <y-object-input :option="studentOption" :map="{studentId:'userId',studentName:'userName'}" showKey="studentName" :row="formData" :before-select="beforeSelectStudent"/>
                 </el-form-item>
-                <el-form-item label="问题性质" prop="reason">
-                    <y-lov v-model="formData.reason" type="REASON"></y-lov>
+                <el-form-item label="考评性质" prop="type">
+                    <y-lov type="REASON" v-model="formData.type"/>
                 </el-form-item>
-                <el-form-item label="学生加分" prop="addScore" required>
-                    <el-input v-model="formData.addScore"></el-input>
+                <el-form-item label="考评备注" prop="comment">
+                    <el-input v-model="formData.comment"/>
                 </el-form-item>
-                <el-form-item label="学生减分" prop="decrease" required>
-                    <el-input v-model="formData.decrease"></el-input>
-                </el-form-item>
-                <el-form-item label="老师建议" prop="suggestions">
-                    <el-input v-model="formData.suggestions"></el-input>
+                <el-form-item label="扣分" prop="score">
+                    <el-radio-group v-model="formData.score">
+                        <el-radio label="-1"/>
+                        <el-radio label="-2"/>
+                        <el-radio label="-5"/>
+                    </el-radio-group>
+                    <el-input v-model="formData.score"/>
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
@@ -52,25 +53,46 @@
 <script>
     export default {
         name: "tea-score-list",
-        data()  {
+        data() {
             const option = new TableOption({
                 queryPage: 'score/queryPage'
             })
-            const clsOption = new TableOption({
-                queryPage: 'cls/queryPage',
+            const courseOption = new TableOption({
+                queryPage: 'course/queryPage',
                 render() {
                     return (
                         <div>
-                            <el-table-column prop="fullName" label="班级" search="input" sortable="custom"/>
+                            <el-table-column prop="name" label="课程名称"/>
+                            <el-table-column prop="teacherName" label="任课老师"/>
                         </div>
                     )
                 },
             })
+            const studentOption = new TableOption({
+                queryPage: 'interUserCourse/queryPage',
+                render() {
+                    return (
+                        <div>
+                            <el-table-column prop="userName" label="学生姓名"/>
+                            <el-table-column prop="className" label="班级"/>
+                            <el-table-column prop="userTeacherName" label="辅导员"/>
+                        </div>
+                    )
+                },
+                beforeLoad: (url, param) => {
+                    console.log('student beforeLoad', this.courseOption)
+                    studentOption.setFilter({
+                        field: 'courseId',
+                        value: this.courseOption.selectRow.id
+                    })
+                }
+            })
             return {
                 option,
-                clsOption,
+                courseOption,
+                studentOption,
                 formData: {},                                                                                   //表单绑定的数据对象
-                isInsert: false,                                                                                //当前是否为新建状态
+                isInsert: false,                                                                                   //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
                 rules: {
                     name: [{required: true, message: '请输入学生姓名', trigger: 'blur'},],                        //表单校验规则
@@ -165,6 +187,13 @@
              */
             clear() {
                 this.formData = {}
+            },
+
+            beforeSelectStudent() {
+                if (!this.formData.courseId) {
+                    this.$message("请先选择课程！")
+                    return Promise.reject("请先选择课程！")
+                }
             },
         }
 

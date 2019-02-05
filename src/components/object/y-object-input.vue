@@ -11,9 +11,14 @@
             map: {type: Object, required: true},                        //row与选中的row的字段之间的映射规则，map对象中的key为row的key，map中的value为选中row的key
             showKey: {type: String, required: true},                    //row中用来显示在input中的key
             option: {type: Object, required: true},                     //表格option
+
+            beforeSelect: {type: Function},
         },
         methods: {
-            p_click() {
+            async p_click() {
+                if (!!this.beforeSelect) {
+                    await this.beforeSelect()
+                }
                 this.$object.pick({
                     option: this.option,
                     confirm: (row) => this.p_confirm(row)
