@@ -18,6 +18,7 @@
             </el-table-column>
             <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
             <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
+            <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom"/>
         </y-table>
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
 
@@ -41,6 +42,9 @@
                         <el-radio label="-5"/>
                     </el-radio-group>
                     <el-input v-model="formData.score"/>
+                </el-form-item>
+                <el-form-item label="考评时间" prop="checkTime">
+                    <y-date v-model="formData.checkTime"/>
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
