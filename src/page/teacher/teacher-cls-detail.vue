@@ -1,9 +1,9 @@
 <template>
     <div class="teacher-cls-detail">
-        <div>
+        <div class="detail-title-wrapper">
             <el-card>
                 <div class="detail-title">
-                    <span>{{`${cls.grade}级${cls.cls}班`}}</span>
+                    <span class="title">{{`${cls.grade}级${cls.cls}班`}}</span>
                     <el-button type="text" @click="$lv.back()"><i class="el-icon-arrow-left"/>返回</el-button>
                 </div>
             </el-card>
@@ -69,12 +69,6 @@
     .teacher-cls-detail {
         width: 100%;
         box-sizing: border-box;
-        .detail-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
         .table-wrapper {
             width: 100%;
             box-sizing: border-box;

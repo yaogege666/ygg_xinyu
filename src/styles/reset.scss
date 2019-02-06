@@ -7,3 +7,24 @@ html, body, .app {
     box-sizing: border-box;
   }
 }
+
+.el-card {
+  border-radius: 0;
+  margin-bottom: 12px;
+}
+
+.detail-title-wrapper {
+  .el-card__body {
+    padding: 12px;
+  }
+  .detail-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    span.title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}

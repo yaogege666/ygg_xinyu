@@ -22,12 +22,6 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        & > div {
-            padding: 20px;
-            padding-left: 8px;
-            .el-card {
-                margin-bottom: 12px;
-            }
-        }
+        padding: 12px;
     }
 </style>

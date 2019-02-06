@@ -1,9 +1,9 @@
 <template>
     <div class="teacher-course-detail">
-        <div>
+        <div class="detail-title-wrapper">
             <el-card>
                 <div class="detail-title">
-                    <span>{{course.name}}</span>
+                    <span class="title">{{course.name}}</span>
                     <el-button type="text" @click="$lv.back()"><i class="el-icon-arrow-left"/>返回</el-button>
                 </div>
             </el-card>
@@ -67,12 +67,6 @@
 
 <style lang="scss">
     .teacher-course-detail {
-        .detail-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
         .table-wrapper {
             width: 100%;
             box-sizing: border-box;
