@@ -1,19 +1,19 @@
 <template>
-    <div class="teacher-cls-detail">
+    <div class="teacher-course-detail">
         <div>
             <el-card>
                 <div class="detail-title">
-                    <span>{{`${cls.grade}级${cls.cls}班`}}</span>
+                    <span>{{course.name}}</span>
                     <el-button type="text" @click="$lv.back()"><i class="el-icon-arrow-left"/>返回</el-button>
                 </div>
             </el-card>
         </div>
         <div class="table-wrapper">
             <div class="student-table">
-                <y-table :option="studentOption" v-if="!!studentOption">
-                    <el-table-column prop="name" label="学生姓名" search="input" sortable="custom"/>
-                    <el-table-column prop="code" label="学号" search="input" sortable="custom"/>
-                    <el-table-column prop="tel" label="电话号码" search="input" sortable="custom"/>
+                <y-table :option="studentOption">
+                    <el-table-column prop="userName" label="学生名称"/>
+                    <el-table-column prop="className" label="学生班级"/>
+                    <el-table-column prop="userTeacherName" label="学生辅导员"/>
                 </y-table>
             </div>
             <div class="score-table">
@@ -39,25 +39,25 @@
 
 <script>
     export default {
-        name: "teacher-cls-detail",
+        name: "teacher-course-detail",
         data() {
-            const cls = this.$route.query
+            const course = this.$route.query
             const studentOption = new TableOption({
                 title: '学生列表',
-                queryPage: 'user/queryPage',
+                queryPage: 'interUserCourse/queryPage',
                 filters: [
-                    {field: 'classId', value: cls.id}
+                    {field: 'courseId', value: course.id}
                 ]
             })
             const scoreOption = new TableOption({
                 title: '班级考评记录列表',
                 queryPage: 'score/queryPage',
                 filters: [
-                    {field: 'studentClassName', value: `${cls.grade}级${cls.cls}班`}
+                    {field: 'courseId', value: course.id}
                 ]
             })
             return {
-                cls,
+                course,
                 studentOption,
                 scoreOption,
             }
@@ -66,9 +66,7 @@
 </script>
 
 <style lang="scss">
-    .teacher-cls-detail {
-        width: 100%;
-        box-sizing: border-box;
+    .teacher-course-detail {
         .detail-title {
             display: flex;
             align-items: center;
