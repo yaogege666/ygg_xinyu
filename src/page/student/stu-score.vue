@@ -10,6 +10,7 @@
             </el-table-column>
             <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
             <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
+            <el-table-column prop="checkTeacherName" label="考评人" search="input" sortable="custom"/>
             <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom"/>
         </y-table>
     </div>

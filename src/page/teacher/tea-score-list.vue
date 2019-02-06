@@ -113,7 +113,8 @@
                 this.isInsert = true
                 this.formData = {
                     score: '-1',
-                    checkTime: this.$lv.$utils.dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss')
+                    checkTime: this.$lv.$utils.dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+                    checkTeacherId: user.id,
                 }
                 this.dialogVisible = true
                 !!this.$refs.form && this.$refs.form.clearValidate()
