@@ -18,6 +18,7 @@
             </div>
             <div class="score-table">
                 <y-table :option="scoreOption" v-if="!!scoreOption">
+                    <el-button @click="newData" slot="button">添加</el-button>
                     <el-table-column prop="studentName" label="学生姓名" search="input" sortable="custom"/>
                     <el-table-column prop="studentClassName" label="学生班级" search="input" sortable="custom"/>
                     <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom"/>
@@ -34,6 +35,37 @@
                 </y-table>
             </div>
         </div>
+
+        <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
+
+            <el-form label-width="80px" label-position="left" :model="formData" ref="form">
+                <el-form-item label="学生" prop="courseName">
+                    <y-object-input :option="studentPickOption" :map="{studentId:'userId',studentName:'userName'}" showKey="studentName" :row="formData"/>
+                </el-form-item>
+                <el-form-item label="考评性质" prop="type">
+                    <y-lov type="REASON" v-model="formData.type"/>
+                </el-form-item>
+                <el-form-item label="考评备注" prop="comment">
+                    <el-input v-model="formData.comment"/>
+                </el-form-item>
+                <el-form-item label="扣分/加分" prop="score">
+                    <el-radio-group v-model="formData.score">
+                        <el-radio label="5"/>
+                        <el-radio label="2"/>
+                        <el-radio label="1"/>
+                        <el-radio label="-1"/>
+                        <el-radio label="-2"/>
+                        <el-radio label="-5"/>
+                    </el-radio-group>
+                    <el-input v-model="formData.score"/>
+                </el-form-item>
+                <el-form-item label="考评时间" prop="checkTime">
+                    <y-date v-model="formData.checkTime" datetime/>
+                </el-form-item>
+            </el-form>
+            <el-button slot="footer" @click="save">保存</el-button>
+            <el-button slot="footer" @click="cancel">取消</el-button>
+        </el-dialog>
     </div>
 </template>
 
@@ -56,12 +88,57 @@
                     {field: 'courseId', value: course.id}
                 ]
             })
+
+            const studentPickOption = new TableOption({
+                queryPage: 'interUserCourse/queryPage',
+                render() {
+                    return (
+                        <div>
+                            <el-table-column prop="userName" label="学生名称"/>
+                            <el-table-column prop="className" label="学生班级"/>
+                            <el-table-column prop="userTeacherName" label="学生辅导员"/>
+                        </div>
+                    )
+                },
+                filters: [
+                    {field: 'courseId', value: course.id}
+                ]
+            })
             return {
                 course,
                 studentOption,
                 scoreOption,
+                studentPickOption,
+                formData: {},
+                dialogVisible: false,
+                isInsert: true,
             }
         },
+        methods: {
+            newData() {
+                this.isInsert = true
+                this.formData = {
+                    checkTime: this.$lv.$utils.dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+                    checkTeacherId: user.id,
+                    courseId: this.course.id
+                }
+                this.dialogVisible = true
+                !!this.$refs.form && this.$refs.form.clearValidate()
+            },
+            async save() {
+                await this.$http.post('score/insert', this.formData)
+                await this.scoreOption.reload()
+                this.dialogVisible = false
+                this.clear()
+            },
+            cancel() {
+                this.dialogVisible = false
+                this.clear()
+            },
+            clear() {
+                this.formData = {}
+            },
+        }
     }
 </script>
 
