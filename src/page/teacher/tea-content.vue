@@ -8,6 +8,10 @@
                 </div>
             </div>
         </div>
+        <el-card>
+            <div ref="clsDiv" style="width: 100%;height: 300px">
+            </div>
+        </el-card>
     </div>
 </template>
 
@@ -18,6 +22,34 @@
             return {
                 teacher: user
             }
+        },
+        mounted() {
+            const chart = this.$echarts.init(this.$refs.clsDiv)
+            const option = {
+                title: {
+                    text: '班级考评得分/扣分记录'
+                },
+                legend: {
+                    data: ['扣分', '得分']
+                },
+                xAxis: {
+                    data: ["17级2班", "15级2班"]
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '扣分',
+                        type: 'bar',
+                        data: [5, 20]
+                    },
+                    {
+                        name: '得分',
+                        type: 'bar',
+                        data: [10, 15]
+                    },
+                ]
+            };
+            chart.setOption(option)
         },
     }
 </script>
