@@ -47,17 +47,18 @@
             const cls = this.$route.query
             const studentOption = new TableOption({
                 title: '学生列表',
-                queryPage: 'user/queryPage',
+                queryPage: 'user/queryAll',
                 filters: [
                     {field: 'classId', value: cls.id}
                 ],
+                param: {
+                    attr1: 'allScore'
+                },
                 afterLoad: () => {
-                    console.log(studentOption.list)
                     this.studentChart = this.$echarts.init(this.$refs.studentReportDiv)
                     const xAxisData = studentOption.list.map(item => item.name)
                     const decreaseData = studentOption.list.map(item => item.decreaseScore)
                     const increaseData = studentOption.list.map(item => item.increaseScore)
-                    console.log(increaseData, decreaseData)
                     const option = {
                         title: {
                             text: '学生考评得分/扣分记录表'

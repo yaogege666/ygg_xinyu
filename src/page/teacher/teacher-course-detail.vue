@@ -8,6 +8,9 @@
                 </div>
             </el-card>
         </div>
+        <el-card>
+            <div ref="studentReportDiv" class="report-div"></div>
+        </el-card>
         <div class="table-wrapper">
             <div class="student-table">
                 <y-table :option="studentOption">
@@ -39,7 +42,7 @@
         <el-dialog :visible.sync="dialogVisible" width="500px" :title="isInsert?'新建':'编辑'">
 
             <el-form label-width="80px" label-position="left" :model="formData" ref="form">
-                <el-form-item label="学生" prop="courseName">
+                <el-form-item label="学生" prop="studentName">
                     <y-object-input :option="studentPickOption" :map="{studentId:'userId',studentName:'userName'}" showKey="studentName" :row="formData"/>
                 </el-form-item>
                 <el-form-item label="考评性质" prop="type">
@@ -76,13 +79,69 @@
             const course = this.$route.query
             const studentOption = new TableOption({
                 title: '学生列表',
-                queryPage: 'interUserCourse/queryPage',
+                queryPage: 'interUserCourse/queryAll',
                 filters: [
                     {field: 'courseId', value: course.id}
-                ]
+                ],
+                param: {
+                    attr1: 'courseScore',
+                    attr2: course.id
+                },
+                afterLoad: () => {
+                    this.studentChart = this.$echarts.init(this.$refs.studentReportDiv)
+                    const xAxisData = this.studentOption.list.map(item => item.userName)
+                    const decreaseData = this.studentOption.list.map(item => item.decreaseScore)
+                    const increaseData = this.studentOption.list.map(item => item.increaseScore)
+
+                    const option = {
+                        title: {
+                            text: '课程学生考评得分/扣分记录表'
+                        },
+                        legend: {
+                            data: ['扣分', '得分']
+                        },
+                        xAxis: {
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: xAxisData
+                        },
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '扣分',
+                                type: 'bar',
+                                data: decreaseData,
+                                stack: '总量',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'inside'
+                                    }
+                                },
+                            },
+                            {
+                                name: '得分',
+                                type: 'bar',
+                                data: increaseData,
+                                stack: '总量',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'inside'
+                                    }
+                                },
+                            },
+                        ]
+                    };
+                    this.studentChart.setOption(option)
+                }
             })
             const scoreOption = new TableOption({
-                title: '班级考评记录列表',
+                title: '课程内学生考评记录列表',
                 queryPage: 'score/queryPage',
                 filters: [
                     {field: 'courseId', value: course.id}
