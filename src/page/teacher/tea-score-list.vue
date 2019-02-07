@@ -44,7 +44,7 @@
                     <el-input v-model="formData.score"/>
                 </el-form-item>
                 <el-form-item label="考评时间" prop="checkTime">
-                    <y-date v-model="formData.checkTime"/>
+                    <y-date v-model="formData.checkTime" datetime/>
                 </el-form-item>
             </el-form>
             <el-button slot="footer" @click="save">保存</el-button>
@@ -111,7 +111,11 @@
              */
             newData() {
                 this.isInsert = true
-                this.formData = {}
+                this.formData = {
+                    score: '-1',
+                    checkTime: this.$lv.$utils.dateFormat(new Date(), 'YYYY-MM-DD HH:mm:ss'),
+                    checkTeacherId: user.id,
+                }
                 this.dialogVisible = true
                 !!this.$refs.form && this.$refs.form.clearValidate()
             },

@@ -3,42 +3,53 @@
         <div class="tea-content-list">
             <div class="tea-content">
                 <div class="tea-content-item">
-                    <div class="tea-content-item">姓名：韦老师</div>
-                    <div class="tea-content-item">授课班级：软件151</div>
-                </div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">课程</div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">电话号码</div>
-                <div class="tea-content-item">邮箱地址</div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">
-                    <div class="tea-content-item">综合信誉考评成绩</div>
-                    <div class="tea-content-item">分数</div>
+                    <div class="tea-content-item">欢迎！{{teacher.name}}</div>
+                    <div class="tea-content-item">工号：{{teacher.code}}</div>
                 </div>
             </div>
         </div>
-        <tea_echart/>
-       <tea-check/>
-        <tea-score/>
-        <tea-score-list/>
+        <el-card>
+            <div ref="clsDiv" style="width: 100%;height: 300px">
+            </div>
+        </el-card>
     </div>
 </template>
 
 <script>
-    import TeaScore from "./tea-score";
-    import TeaCheck from "./tea-check";
-    import TeaScoreList from "./tea-score-list";
-    import Tea_echart from "./tea-echart";
-
     export default {
         name: "tea-content",
-        components: {Tea_echart, TeaScoreList, TeaCheck, TeaScore},
-        created() {
-            console.log(this.$route.query)
+        data() {
+            return {
+                teacher: user
+            }
+        },
+        mounted() {
+            const chart = this.$echarts.init(this.$refs.clsDiv)
+            const option = {
+                title: {
+                    text: '班级考评得分/扣分记录'
+                },
+                legend: {
+                    data: ['扣分', '得分']
+                },
+                xAxis: {
+                    data: ["17级2班", "15级2班",]
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '扣分',
+                        type: 'bar',
+                        data: [5, 20]
+                    },
+                    {
+                        name: '得分',
+                        type: 'bar',
+                        data: [10, 15]
+                    },
+                ]
+            };
+            chart.setOption(option)
         },
     }
 </script>
@@ -74,7 +85,7 @@
                     flex-direction: column;
                 }
 
-                &:not(:last-child){
+                &:not(:last-child) {
                     border-right: solid #e8e8e8 1px;
                 }
             }

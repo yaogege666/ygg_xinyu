@@ -1,5 +1,8 @@
 <template>
     <el-card class="y-table" v-if="!!option">
+        <div slot="header" v-if="option.title">
+            <span>{{option.title}}</span>
+        </div>
         <div class="y-table-button">
             <y-table-filter :columns="columns" @confirm="p_filterChange"/>
             <div>
@@ -19,7 +22,7 @@
                 @select-all="p_select">
             <el-table-column type="index" width="50" v-if="option.indexing"/>
             <el-table-column type="selection" width="55" v-if="option.multiSelect"/>
-            <el-table-column/>
+            <el-table-column width="1"/>
             <slot></slot>
             <pl-render-func :render-func="option.render" v-if="!!option.render"/>
         </el-table>

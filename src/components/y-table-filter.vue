@@ -1,6 +1,6 @@
 <template>
     <div class="y-table-filter">
-        <el-select v-model="searchField" placeholder="查询字段">
+        <el-select v-model="searchField" placeholder="查询字段" class="field-select">
             <el-option
                     v-for="item in columns"
                     :key="item.prop"
@@ -83,7 +83,7 @@
             flex-shrink: 0;
         }
         .y-table-filter-component {
-            width: 350px;
+            width: 220px;
         }
         input, button, .el-date-editor {
             border: none;
@@ -92,5 +92,8 @@
         box-sizing: border-box;
         padding: 1px;
         border-radius: 4px;
+        .field-select {
+            width: 150px;
+        }
     }
 </style>

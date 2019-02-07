@@ -1,10 +1,12 @@
 <template>
     <div class="home-menu">
-        <div class="home-menu-item"
-             :class="{'home-menu-item-active':currentPath === item.path}"
-             v-for="(item,index) in menus" :key="index" @click="go(item)">
-            <div class="home-menu-item-content">
-                <span>{{item.name}}</span>
+        <div class="home-menu-wrapper">
+            <div class="home-menu-item"
+                 :class="{'home-menu-item-active':currentPath === item.path}"
+                 v-for="(item,index) in menus" :key="index" @click="go(item)">
+                <div class="home-menu-item-content">
+                    <span>{{item.name}}</span>
+                </div>
             </div>
         </div>
     </div>
@@ -73,12 +75,27 @@
 <style lang="scss">
     .home-menu {
         width: 200px;
-        background-color: #ffffff;
         height: 100%;
-        padding: 12px 0;
-        margin-right: 12px;
-        box-shadow: 0 0 6px #ddd;
-        overflow-y: auto;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            box-shadow: 0 0 6px #969696;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 1px;
+        }
+        .home-menu-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 12px 0;
+            position: relative;
+            z-index: 1;
+            background-color: white;
+        }
+
         .home-menu-item {
             padding-left: 12px;
             cursor: pointer;
