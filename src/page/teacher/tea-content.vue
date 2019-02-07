@@ -3,42 +3,21 @@
         <div class="tea-content-list">
             <div class="tea-content">
                 <div class="tea-content-item">
-                    <div class="tea-content-item">姓名：韦老师</div>
-                    <div class="tea-content-item">授课班级：软件151</div>
-                </div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">课程</div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">电话号码</div>
-                <div class="tea-content-item">邮箱地址</div>
-            </div>
-            <div class="tea-content">
-                <div class="tea-content-item">
-                    <div class="tea-content-item">综合信誉考评成绩</div>
-                    <div class="tea-content-item">分数</div>
+                    <div class="tea-content-item">欢迎！{{teacher.name}}</div>
+                    <div class="tea-content-item">工号：{{teacher.code}}</div>
                 </div>
             </div>
         </div>
-        <tea_echart/>
-       <tea-check/>
-        <tea-score/>
-        <tea-score-list/>
     </div>
 </template>
 
 <script>
-    import TeaScore from "./tea-score";
-    import TeaCheck from "./tea-check";
-    import TeaScoreList from "./tea-score-list";
-    import Tea_echart from "./tea-echart";
-
     export default {
         name: "tea-content",
-        components: {Tea_echart, TeaScoreList, TeaCheck, TeaScore},
-        created() {
-            console.log(this.$route.query)
+        data() {
+            return {
+                teacher: user
+            }
         },
     }
 </script>
@@ -74,7 +53,7 @@
                     flex-direction: column;
                 }
 
-                &:not(:last-child){
+                &:not(:last-child) {
                     border-right: solid #e8e8e8 1px;
                 }
             }
