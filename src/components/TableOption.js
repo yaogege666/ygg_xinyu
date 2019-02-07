@@ -15,6 +15,7 @@ class TableOption {
     filters = []
 
     beforeLoad = null
+    afterLoad = null
 
     parentOption = null
     parentMap = null
@@ -78,6 +79,8 @@ class TableOption {
         this.list = ret
         if (this.list.length > 0) this.table.setCurrentRow(this.list[0])
         this.p_informChildReload()
+
+        !!this.afterLoad && this.afterLoad()
 
         return ret
     }

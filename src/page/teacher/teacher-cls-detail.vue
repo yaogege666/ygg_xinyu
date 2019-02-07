@@ -8,6 +8,9 @@
                 </div>
             </el-card>
         </div>
+        <el-card>
+            <div ref="studentReportDiv" class="report-div"></div>
+        </el-card>
         <div class="table-wrapper">
             <div class="student-table">
                 <y-table :option="studentOption" v-if="!!studentOption">
@@ -20,7 +23,7 @@
                 <y-table :option="scoreOption" v-if="!!scoreOption">
                     <el-table-column prop="studentName" label="学生姓名" search="input" sortable="custom"/>
                     <el-table-column prop="studentClassName" label="学生班级" search="input" sortable="custom"/>
-                    <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom"/>
+                    <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom" width="130px"/>
                     <el-table-column prop="courseTeacherName" label="任课老师" search="input" sortable="custom"/>
                     <el-table-column prop="reason" label="考评性质" search="lov" lov="REASON" sortable="custom">
                         <template slot-scope="{row}">
@@ -30,7 +33,7 @@
                     <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
                     <el-table-column prop="checkTeacherName" label="考评人" search="input" sortable="custom"/>
                     <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
-                    <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom"/>
+                    <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom" width="150px"/>
                 </y-table>
             </div>
         </div>
@@ -47,7 +50,60 @@
                 queryPage: 'user/queryPage',
                 filters: [
                     {field: 'classId', value: cls.id}
-                ]
+                ],
+                afterLoad: () => {
+                    console.log(studentOption.list)
+                    this.studentChart = this.$echarts.init(this.$refs.studentReportDiv)
+                    const xAxisData = studentOption.list.map(item => item.name)
+                    const decreaseData = studentOption.list.map(item => item.decreaseScore)
+                    const increaseData = studentOption.list.map(item => item.increaseScore)
+                    console.log(increaseData, decreaseData)
+                    const option = {
+                        title: {
+                            text: '学生考评得分/扣分记录表'
+                        },
+                        legend: {
+                            data: ['扣分', '得分']
+                        },
+                        xAxis: {
+                            type: 'category',
+                            axisTick: {show: false},
+                            data: xAxisData
+                        },
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '扣分',
+                                type: 'bar',
+                                data: decreaseData,
+                                stack: '总量',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'inside'
+                                    }
+                                },
+                            },
+                            {
+                                name: '得分',
+                                type: 'bar',
+                                data: increaseData,
+                                stack: '总量',
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'inside'
+                                    }
+                                },
+                            },
+                        ]
+                    };
+                    this.studentChart.setOption(option)
+                },
             })
             const scoreOption = new TableOption({
                 title: '班级考评记录列表',
