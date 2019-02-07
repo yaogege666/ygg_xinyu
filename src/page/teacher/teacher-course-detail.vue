@@ -21,7 +21,7 @@
                     <el-button @click="newData" slot="button">添加</el-button>
                     <el-table-column prop="studentName" label="学生姓名" search="input" sortable="custom"/>
                     <el-table-column prop="studentClassName" label="学生班级" search="input" sortable="custom"/>
-                    <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom"/>
+                    <el-table-column prop="courseName" label="课程名称" search="input" sortable="custom" width="130px"/>
                     <el-table-column prop="courseTeacherName" label="任课老师" search="input" sortable="custom"/>
                     <el-table-column prop="reason" label="考评性质" search="lov" lov="REASON" sortable="custom">
                         <template slot-scope="{row}">
@@ -31,7 +31,7 @@
                     <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
                     <el-table-column prop="checkTeacherName" label="考评人" search="input" sortable="custom"/>
                     <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
-                    <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom"/>
+                    <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom" width="150px"/>
                 </y-table>
             </div>
         </div>
