@@ -16,6 +16,8 @@
                 <y-table :option="studentOption">
                     <el-table-column prop="userName" label="学生名称"/>
                     <el-table-column prop="className" label="学生班级"/>
+                    <!--<el-table-column prop="increaseScore" label="加分"/>-->
+                    <!--<el-table-column prop="decreaseScore" label="扣分"/>-->
                     <el-table-column prop="userTeacherName" label="学生辅导员"/>
                 </y-table>
             </div>

@@ -2,13 +2,9 @@
     <div class="stu-content-evaluation">
         <div class="stu-evaluation">
             <div class="stu-evaluation-tea">
-                <div class="tea-image"><img src="../student/image/1.jpg"></div>
                 <div class="tea-detail">
                     <div class="h4">jack老师</div>
                     <div>数学老师</div>
-                </div>
-                <div class="tea-time">
-                    <span>Today at 4:24 AM</span>
                 </div>
             </div>
             <div class="stu-evaluation-score">
@@ -20,13 +16,9 @@
         </div>
         <div class="stu-evaluation">
             <div class="stu-evaluation-tea">
-                <div class="tea-image"><img src="../student/image/1.jpg"></div>
                 <div class="tea-detail">
                     <div class="h4">jack老师</div>
                     <div>数学老师</div>
-                </div>
-                <div class="tea-time">
-                    <span>Today at 4:24 AM</span>
                 </div>
             </div>
             <div class="stu-evaluation-score">
@@ -38,13 +30,9 @@
         </div>
         <div class="stu-evaluation">
             <div class="stu-evaluation-tea">
-                <div class="tea-image"><img src="../student/image/1.jpg"></div>
                 <div class="tea-detail">
                     <div class="h4">jack老师</div>
                     <div>数学老师</div>
-                </div>
-                <div class="tea-time">
-                    <span>Today at 4:24 AM</span>
                 </div>
             </div>
             <div class="stu-evaluation-score">
@@ -56,13 +44,9 @@
         </div>
         <div class="stu-evaluation">
             <div class="stu-evaluation-tea">
-                <div class="tea-image"><img src="../student/image/1.jpg"></div>
                 <div class="tea-detail">
                     <div class="h4">jack老师</div>
                     <div>数学老师</div>
-                </div>
-                <div class="tea-time">
-                    <span>Today at 4:24 AM</span>
                 </div>
             </div>
             <div class="stu-evaluation-score">
@@ -77,7 +61,12 @@
 
 <script>
     export default {
-        name: "stu-evaluation"
+        name: "stu-evaluation",
+        data () {
+            return {
+                teacher : user
+            }
+        }
     }
 </script>
 

@@ -47,7 +47,7 @@
                     /*demo*/
                     // {name: 'http请求示例', path: '/demo/demo-http',},
                     // {name: '列表展示示例', path: '/demo/demo-table',},
-                    // {name: '测试', path: '/demo/demo-test',role:'all'},
+                    {name: '测试', path: '/demo/demo-test',role:'all'},
                     // {name: '对象选择示例', path: '/demo/demo-object',},
                 ]
                 /*@formatter:on*/

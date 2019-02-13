@@ -3,26 +3,25 @@
         <div class="stu-content-list">
             <div class="stu-content">
                 <div class="stu-content-item">
-                    <div class="stu-content-item">姓名：小明</div>
-                    <div class="stu-content-item">班级：软件151</div>
+                    <div class="stu-content-item">姓名:{{student.name}}</div>
+                    <div class="stu-content-item">学号 :{{student.code}}</div>
+
                 </div>
             </div>
             <div class="stu-content">
-                <div class="stu-content-item">电话号码</div>
+                <div class="stu-content-item">班级：{{student.className}}</div>
             </div>
             <div class="stu-content">
-                <div class="stu-content-item">邮箱地址</div>
+                <div class="stu-content-item">电话号码 :{{student.tel}}</div>
             </div>
             <div class="stu-content">
                 <div class="stu-content-item">
-                    <div class="stu-content-item">综合信誉考评成绩</div>
-                    <div class="stu-content-item">分数</div>
+                    <div class="stu-content-item">综合信誉考评成绩 {{}}</div>
                 </div>
             </div>
         </div>
         <Stu_evaluation/>
         <stu-echart/>
-
 
 
     </div>
@@ -36,7 +35,12 @@
 
     export default {
         name: "stu_content",
-        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart, Stu_evaluation}
+        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart, Stu_evaluation},
+        data() {
+            return {
+                student: user,
+            }
+        },
     }
 </script>
 
@@ -71,7 +75,7 @@
                     flex-direction: column;
                 }
 
-                &:not(:last-child){
+                &:not(:last-child) {
                     border-right: solid #e8e8e8 1px;
                 }
             }

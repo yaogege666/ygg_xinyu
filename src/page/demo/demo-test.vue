@@ -1,37 +1,35 @@
 <template>
     <div class="demo-test">
-        <el-button>value:{{v}}</el-button>
-        <y-lov type="REASON" v-model="v"/>
-        <y-lov type="REASON" value="skipping"/>
-        <y-lov-text type="REASON" value="skipping"/>
-
-        <y-date v-model="val" datetime/>
-        val:{{val}}
-        formData:{{formData}}
+        <pl-render-func :render-func="renderButton"
+                        v-for="(item,index) in list"
+                        :data="item"
+                        :key="index"/>
     </div>
 </template>
 
 <script>
     import YTableFilter from "../../components/y-table-filter";
+    import YggTable from "./ygg-table";
+    import YggOption from './YggOption'
+    import PlRenderFunc from "../../components/render/pl-render-func";
 
     export default {
         name: "demo-test",
-        components: {YTableFilter},
+        components: {PlRenderFunc, YggTable, YTableFilter},
         data() {
             return {
-                val: null,
-                v: null,
-
-                formData: {
-                    // startTime: null,
-                    // endTime: null
-                },
+                list: [
+                    {name: '张学友'},
+                    {name: '周润发'},
+                    {name: '吴彦祖'},
+                ]
             }
         },
         methods: {
-            dateRangeChange(array) {
-                this.formData.startTime = !!array ? array[0] : null
-                this.formData.endTime = !!array ? array[1] : null
+            renderButton(h, data) {
+                return (
+                    <el-button>这个是按钮:{data.name}</el-button>
+                )
             },
         }
     }

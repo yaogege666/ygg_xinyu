@@ -4,28 +4,25 @@ import {TableOptionController} from "./index";
 
 class TableOption {
 
-    queryPage = null
-    param = null
-    page = 1
-    pageSize = 10
-    sortField = 'createdAt'
-    sortDesc = true
-    indexing = true
-    multiSelect = false
-    filters = []
+    queryPage = null                    //分页查询地址
+    param = null                        //分页查询的参数
+    page = 1                            //分页查询当前页
+    pageSize = 10                       //分页查询页大小
+    sortField = 'createdAt'             //默认排序字段
+    sortDesc = true                     //默认排序方式asc|desc
+    indexing = true                     //是否需要索引字段
+    multiSelect = false                 //是否多选
+    filters = []                        //筛选参数数组
+    beforeLoad = null                   //请求前钩子函数
+    afterLoad = null                    //请求后钩子函数
+    parentOption = null                 //父表option
+    parentMap = null                    //父表字段映射规则
 
-    beforeLoad = null
-    afterLoad = null
-
-    parentOption = null
-    parentMap = null
-
-    list = []
-
-    table = null
-    selectIndex = null
-    filter = null
-    tableCreated = false
+    list = []                           //当前分页查询缓存数据
+    table = null                        //当前使用的表格
+    selectIndex = null                  //当前选中行索引
+    filter = null                       //筛选组件筛选参数
+    tableCreated = false                //表格是否已经创建
 
     constructor(option) {
         Object.assign(this, option)
