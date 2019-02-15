@@ -9,47 +9,64 @@
             </div>
         </div>
         <el-card>
-            <div ref="clsDiv" style="width: 100%;height: 300px">
-            </div>
+            <div ref="clsReportDiv" class="report-div"></div>
         </el-card>
+        <tea-echarts/>
     </div>
 </template>
 
 <script>
+    import TeaEcharts from "./tea-echarts";
     export default {
         name: "tea-content",
+        components: {TeaEcharts},
         data() {
             return {
                 teacher: user
             }
         },
-        mounted() {
-            const chart = this.$echarts.init(this.$refs.clsDiv)
-            const option = {
-                title: {
-                    text: '班级考评得分/扣分记录'
+        async created() {
+            const {ret} = await this.$http.post('cls/queryClass', {teacherId: user.id})
+            const result1 = ret.map((item) => [item.fullName, item.increaseScore == null ? 0 : item.increaseScore - 0, item.decreaseScore == null ? 0 : item.decreaseScore - 0])
+            result1.unshift(['score', 'increase', 'decrease'])
+            var option = {
+                title : {
+                    text: '所管理班级得分饼图如下：',
                 },
-                legend: {
-                    data: ['扣分', '得分']
+                backgroundColor: '#FFFFDD',
+                itemStyle: {
+                    shadowBlur: 150,
                 },
-                xAxis: {
-                    data: ["17级2班", "15级2班",]
+                visualMap: {
+                    // 不显示 visualMap 组件，只用于明暗度的映射
+                    show: false,
+                    inRange: {
+                        // 明暗度的范围是 0 到 1
+                        colorLightness: [0.5, 0.8]
+                    }
                 },
-                yAxis: {},
-                series: [
-                    {
-                        name: '扣分',
-                        type: 'bar',
-                        data: [5, 20]
+                tooltip: {},
+                dataset: {
+                    source: result1
+                },
+                series: [{
+                    type: 'pie',
+                    radius: 70,
+                    center: ['25%', '50%'],
+                }, {
+                    type: 'pie',
+                    radius: 70,
+                    center: ['75%', '50%'],
+                    encode: {
+                        itemName: 'score',
+                        value: 'decrease'
                     },
-                    {
-                        name: '得分',
-                        type: 'bar',
-                        data: [10, 15]
-                    },
-                ]
+
+                }]
             };
-            chart.setOption(option)
+            this.chart = this.$echarts.init(this.$refs.clsReportDiv)
+            this.chart.setOption(option)
+
         },
     }
 </script>

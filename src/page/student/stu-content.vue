@@ -16,18 +16,16 @@
             </div>
             <div class="stu-content">
                 <div class="stu-content-item">
-                    <div class="stu-content-item">综合信誉考评成绩 {{}}</div>
+                    <div class="stu-content-item">综合信誉考评成绩 :</div>
                 </div>
             </div>
         </div>
-        <Stu_evaluation/>
         <stu-echart/>
 
 
     </div>
 </template>
 <script>
-    import Stu_evaluation from "./stu-evaluation";
     import StuEchart from "./stu-echart";
     import Stu_absence from "./stu-leave";
     import Stu_absence_list from "./stu-leave-list";
@@ -35,7 +33,7 @@
 
     export default {
         name: "stu_content",
-        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart, Stu_evaluation},
+        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart},
         data() {
             return {
                 student: user,

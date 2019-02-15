@@ -11,53 +11,50 @@
 <script>
     export default {
         name: "stu-echart",
+        methods: {
+        },
+        async created() {
+            const {ret} = await this.$http.post('interUserCourse/queryCourseScore', {userId: user.id})
+            const result1 = ret.map((item) => [item.courseName, item.increaseScore == null ? 0 : item.increaseScore - 0, item.decreaseScore == null ? 0 : item.decreaseScore - 0])
+            result1.unshift(['score', 'increase', 'decrease'])
+            var option = {
+                legend: {},
+                tooltip: {},
+                dataset: {
+                    source: result1
+                },
+                series: [{
+                    type: 'pie',
+                    radius: 60,
+                    center: ['25%', '50%'],
+                    encode: {
+                        itemName: 'score',
+                        value: 'increase'
+                    }
+                }, {
+                    type: 'pie',
+                    radius: 60,
+                    center: ['75%', '50%'],
+                    encode: {
+                        itemName: 'score',
+                        value: 'decrease'
+                    }
+                }]
+            };
+            this.chart = this.$echarts.init(this.$refs.reportDiv)
+            this.chart.setOption(option)
+        },
         data() {
             const option = new TableOption({
-                queryPage: 'interUserCourse/queryTeacherScore',
+                queryPage: 'interUserCourse/queryCourseScore',
                 filters: [
                     {field: 'userId', value: user.userId}
                 ],
-                afterLoad: () => {
-                    this.chart = this.$echarts.init(this.$refs.reportDiv)
-                    const courseName=this.option.list.map(item => item.courseName)
-                    const decreaseData = this.option.list.map(item => item.decreaseScore)
-                    const increaseData = this.option.list.map(item => item.increaseScore)
-                    const  option = {
-                        legend: {},
-                        tooltip: {},
-                        dataset: {
-                            source: [
-                                ['rule', 'increase', 'decrease'],
-                                [courseName, increaseData, decreaseData],
-                            ]
-                        },
-                        series: [{
-                            type: 'pie',
-                            radius: 60,
-                            center: ['25%', '30%'],
-                            encode: {
-                                itemName: 'rule',
-                                value: 'increase'
-                            }
-                        }, {
-                            type: 'pie',
-                            radius: 60,
-                            center: ['75%', '30%'],
-                            encode: {
-                                itemName: 'rule',
-                                value: 'decrease'
-                            }
-                        }]
-                    }
-                    this.chart.setOption(option)
-
-                }
             })
             return {
                 option,
             }
         },
-
     }
 </script>
 

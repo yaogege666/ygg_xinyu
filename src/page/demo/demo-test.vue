@@ -31,7 +31,10 @@
                     <el-button>这个是按钮:{data.name}</el-button>
                 )
             },
-        }
+        },
+        async created() {
+
+        },
     }
 </script>
 
