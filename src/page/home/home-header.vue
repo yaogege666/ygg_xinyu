@@ -5,8 +5,8 @@
             <div class="user-name">
                 欢迎！{{!!userInfo && userInfo.name}}
             </div>
-            <el-badge :value="12" class="clock" type="warning">
-                <y-icon icon="icon-iconset0218"/>
+            <el-badge :value="1" class="clock" type="warning">
+                <y-icon icon="icon-iconset0218" @click="message"/>
             </el-badge>
 
             <el-badge :value="10" class="envelope">
@@ -40,6 +40,9 @@
                 this.setLoginTime(null)
                 window.location.href = '/login.html'
             },
+            message() {
+                this.$lv.push('/admin/message')
+            }
 
         },
         computed: {

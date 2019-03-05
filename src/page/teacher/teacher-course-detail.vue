@@ -33,7 +33,7 @@
                             <y-lov-text :value="row.type" type="REASON"/>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="score" label="扣分" search="input" sortable="custom"/>
+                    <el-table-column prop="score" label="分数" search="input" sortable="custom"/>
                     <el-table-column prop="checkTeacherName" label="考评人" search="input" sortable="custom"/>
                     <el-table-column prop="comment" label="考评备注" search="input" sortable="custom"/>
                     <el-table-column prop="checkTime" label="考评时间" search="input" sortable="custom" width="150px"/>

@@ -16,7 +16,10 @@
             </div>
             <div class="stu-content">
                 <div class="stu-content-item">
-                    <div class="stu-content-item">综合信誉考评成绩 :</div>
+                    <div class="stu-content-item">综合信誉考评总分:{{ret.allScore}}
+
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,10 +38,19 @@
         name: "stu_content",
         components: {StuScore, Stu_absence_list, Stu_absence, StuEchart},
         data() {
-            return {
-                student: user,
-            }
+          return{
+              student:user,
+              ret:{},
+          }
         },
+        async created() {
+            const {ret} = await this.$http.post('user/queryOne', {
+                attr1:'allScore',
+                id:user.id
+            })
+            this.ret = ret;
+        }
+
     }
 </script>
 

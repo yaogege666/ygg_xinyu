@@ -11,8 +11,6 @@
 <script>
     export default {
         name: "stu-echart",
-        methods: {
-        },
         async created() {
             const {ret} = await this.$http.post('interUserCourse/queryCourseScore', {userId: user.id})
             const result1 = ret.map((item) => [item.courseName, item.increaseScore == null ? 0 : item.increaseScore - 0, item.decreaseScore == null ? 0 : item.decreaseScore - 0])
