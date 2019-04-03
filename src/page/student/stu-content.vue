@@ -17,8 +17,6 @@
             <div class="stu-content">
                 <div class="stu-content-item">
                     <div class="stu-content-item">综合信誉考评总分:{{ret.allScore}}
-
-
                     </div>
                 </div>
             </div>
@@ -30,13 +28,13 @@
 </template>
 <script>
     import StuEchart from "./stu-echart";
-    import Stu_absence from "./stu-leave";
+
     import Stu_absence_list from "./stu-leave-list";
     import StuScore from "./stu-score";
 
     export default {
         name: "stu_content",
-        components: {StuScore, Stu_absence_list, Stu_absence, StuEchart},
+        components: {StuScore, Stu_absence_list, StuEchart},
         data() {
           return{
               student:user,
@@ -49,6 +47,9 @@
                 id:user.id
             })
             this.ret = ret;
+            if((ret.allScore-0) <50) {
+                await this.$http.post('message/insert', {id:user.id})
+            }
         }
 
     }

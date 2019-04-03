@@ -90,7 +90,7 @@
         methods: {
             /**
              * 查询数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:11
              */
             async queryData() {
@@ -100,7 +100,7 @@
             },
             /**
              * 保存插入的数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:11
              */
             async saveInsert() {
@@ -142,7 +142,7 @@
             },
             /**
              * 查询要被更新的数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:16
              */
             async queryUpdateData() {
@@ -155,7 +155,7 @@
             },
             /**
              * 保存编辑的数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:27
              */
             async saveUpdate() {
@@ -171,7 +171,7 @@
             },
             /**
              * 重置要编辑的数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:27
              */
             reset2() {
@@ -182,7 +182,7 @@
             },
             /**
              * 根据id删除数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/14 20:27
              */
             async deleteData() {

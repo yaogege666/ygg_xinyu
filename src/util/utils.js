@@ -5,7 +5,7 @@ const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
 /**
  * 驼峰命名转横杠命名
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/14
  */
 function getKebabCase(str) {
@@ -16,7 +16,7 @@ function getKebabCase(str) {
 
 /**
  * 引入js文件
- * @author  韦胜健
+ * @author  姚格格
  * @date    2018/11/30 09:46
  */
 function addScript(scriptPath) {
@@ -32,7 +32,7 @@ function addScript(scriptPath) {
 
 /**
  * 插入排序
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function insertSort(arr, func) {
@@ -55,7 +55,7 @@ function insertSort(arr, func) {
 
 /**
  * 推迟时间
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/15
  */
 function delay(duration = 100) {
@@ -64,7 +64,7 @@ function delay(duration = 100) {
 
 /**
  * 从数组中删除
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function removeFromArray(array, target) {
@@ -74,7 +74,7 @@ function removeFromArray(array, target) {
 
 /**
  * 获取唯一标识符
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function uuid() {
@@ -93,7 +93,7 @@ function uuid() {
 
 /**
  * 填充0字符
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function zeroize(value, length = 2) {
@@ -108,7 +108,7 @@ function zeroize(value, length = 2) {
 
 /**
  * 转为驼峰命名
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function camelCase(name) {
@@ -152,7 +152,7 @@ export function deepCopy(data) {
 
 /**
  * 去掉px,返回数字
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function removePx(value) {
@@ -161,7 +161,7 @@ function removePx(value) {
 
 /**
  * 判断变量类型
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function typeOf(obj) {
@@ -183,7 +183,7 @@ function typeOf(obj) {
 
 /**
  * 判断是否存在于数组中
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function oneOf(val, array) {
@@ -196,7 +196,7 @@ function oneOf(val, array) {
 
 /**
  * 格式化日期对象
- * @author  韦胜健
+ * @author  姚格格
  * @date    2018/12/13 10:29
  * @param date 将要格式化的日期
  * @param format 格式化字符串
@@ -207,7 +207,7 @@ function dateFormat(date, format = "YYYY-MM-DD") {
 
 /**
  * 解析字符串为日期对象
- * @author  韦胜健
+ * @author  姚格格
  * @date    2018/12/13 10:30
  * @param string 将要解析的字符串
  * @param format 格式化字符串
@@ -218,7 +218,7 @@ function dateParse(string, format = "YYYY-MM-DD") {
 
 /**
  * 使用px单位化
- * @author  韦胜健
+ * @author  姚格格
  * @date    2019/1/10 10:56
  */
 function unit(data) {
@@ -235,7 +235,7 @@ function unit(data) {
 
 /**
  * 打乱数组
- * @author  韦胜健
+ * @author  姚格格
  * @date    2019/1/10 10:56
  */
 function shuffle(array) {
@@ -257,7 +257,7 @@ function shuffle(array) {
 
 /**
  * 从数组中查找一个
- * @author  韦胜健
+ * @author  姚格格
  * @date    2019/1/10 10:56
  */
 function findOne(array, fn) {
@@ -270,7 +270,7 @@ function findOne(array, fn) {
 
 /**
  * 从数组中查找多个
- * @author  韦胜健
+ * @author  姚格格
  * @date    2019/1/10 10:57
  */
 function findSome() {
@@ -365,7 +365,7 @@ export function percentNumFormat(d) {
 
 /**
  * 向下查找组件
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function findComponentsDownward(context, componentName) {
@@ -378,7 +378,7 @@ function findComponentsDownward(context, componentName) {
 
 /**
  * 向上查找组件
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function findComponentsUpward(context, componentName) {
@@ -394,7 +394,7 @@ function findComponentsUpward(context, componentName) {
 
 /**
  * 向上查找一个组件
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function findComponentUpward(context, componentName, componentNames) {
@@ -415,7 +415,7 @@ function findComponentUpward(context, componentName, componentNames) {
 
 /**
  * 是否包含某种样式class
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function hasClass(cls, clsList) {
@@ -424,7 +424,7 @@ function hasClass(cls, clsList) {
 
 /**
  * 添加class
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function addClass(el, cls) {
@@ -451,7 +451,7 @@ function addClass(el, cls) {
 
 /**
  * 删除class
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function removeClass(el, cls) {
@@ -478,7 +478,7 @@ function removeClass(el, cls) {
 
 /**
  * 在元素节点后面添加新的节点
- * @author 韦胜健
+ * @author 姚格格
  * @date 2018/11/19
  */
 function insertAfter(newEl, targetEl) {

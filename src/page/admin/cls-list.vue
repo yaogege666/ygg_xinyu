@@ -27,7 +27,6 @@
             <el-button slot="footer" @click="save">保存</el-button>
             <el-button slot="footer" @click="cancel">取消</el-button>
         </el-dialog>
-
     </div>
 </template>
 
@@ -69,7 +68,7 @@
         methods: {
             /**
              * 新建数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:55
              */
             newData() {
@@ -80,7 +79,7 @@
             },
             /**
              * 编辑数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:55
              */
             updateData() {
@@ -91,7 +90,7 @@
             },
             /**
              * 删除数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:56
              */
             async deleteData() {
@@ -106,7 +105,7 @@
             },
             /**
              * 取消，关闭对话框
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:56
              */
             cancel() {
@@ -115,7 +114,7 @@
             },
             /**
              * 保存数据，根据当前是否为新建还是编辑状态进行操作
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:57
              */
             async save() {
@@ -133,7 +132,7 @@
 
             /**
              * 发送新建数据请求
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:56
              */
             async insert() {
@@ -141,7 +140,7 @@
             },
             /**
              * 发送更新数据请求
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:56
              */
             async update() {
@@ -149,7 +148,7 @@
             },
             /**
              * 清空对话框表单数据
-             * @author  韦胜健
+             * @author  姚格格
              * @date    2019/1/23 14:57
              */
             clear() {

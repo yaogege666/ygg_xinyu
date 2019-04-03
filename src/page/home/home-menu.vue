@@ -37,9 +37,7 @@
                     {name: '我的课程', path: '/teacher/teacher-course-list',role:'teacher'},
                     /*巡视老师*/
                     {name: '学生信誉记录考评', path: '/teacher/tea-score-list',role:'patrol teacher'},
-                    {name: '巡视人员', path: '/patrol/patrol',role:'patrol teacher'},
                     /*管理员*/
-                    {name: '管理员', path: '/admin/admin',role:'admin'},
                     {name: '用户管理', path: '/admin/user-list',role:'admin'},
                     {name: '班级管理', path: '/admin/cls-list',role:'admin'},
                     {name: '值列表管理', path: '/admin/lov-list',role:'admin'},

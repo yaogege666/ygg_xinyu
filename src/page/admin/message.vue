@@ -1,12 +1,12 @@
 <template>
     <div class="message">
-        <div class="item">
-            同学你好，因你信誉的分总分低于50分，特此显示此消息公告，以示警示！望改正！
-        </div>
-
-        <div class="message-date">
-            警告时间：{{user.updatedAt}}
-        </div>
+        <y-table :option="option">
+            <el-table-column prop="sendId" label="发送方" sortable="custom"/>
+            <el-table-column prop="name" label="发送人" sortable="custom"/>
+            <el-table-column prop="username" label="工号/学号" sortable="custom"/>
+            <el-table-column prop="receiveId" label="接收方" sortable="custom"/>
+            <el-table-column prop="info" label="警告信息" sortable="custom"/>
+        </y-table>
     </div>
 </template>
 
@@ -14,37 +14,16 @@
     export default {
         name: "message",
         data() {
+            const option = new TableOption({
+                queryPage: 'message/queryPage',
+            })
             return {
-                user: user
+                option,
             }
-
-        }
-
+        },
     }
 </script>
 
 <style lang="scss">
-    .message {
-        width: 900px;
-        height: 600px;
-        font-weight: bold;
-        margin-left: 200px;
-        background-color: #ffffff;
-        .item {
-            font-size: 20px;
-            padding-top: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .message-date {
-            color: red;
-            margin-top: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-bottom: 10px;
 
-        }
-    }
 </style>
