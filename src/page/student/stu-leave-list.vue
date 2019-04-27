@@ -3,7 +3,6 @@
         <y-table :option="option">
             <div slot="button">
                 <el-button @click="newData">新建</el-button>
-                <!--<el-button @click="updateData">编辑</el-button>-->
                 <el-button @click="revert">撤回</el-button>
             </div>
             <el-table-column prop="reason" label="问题性质" search="lov" lov="LEAVE_REASON" sortable="custom">
@@ -61,7 +60,7 @@
             return {
                 leaveReasons: [],
                 reason: null,
-
+                ret:{},
                 formData: {},                                                                                   //表单绑定的数据对象
                 isInsert: false,                                                                                //当前是否为新建状态
                 dialogVisible: false,                                                                           //对话框显示控制变量
@@ -71,9 +70,16 @@
                     code: [{required: true, message: '请输入学号', trigger: 'blur'},],                        //表单校验规则
                 },
             }
+
         },
         async created() {
             this.leaveReasons = await this.$lov.getLovByType("LEAVE_REASON")
+            const {ret} = await this.$http.post('user/queryOne', {
+                attr1:'allScore',
+                id:user.id
+            })
+            this.ret = ret;
+            console.log(ret.allScore)
         },
         computed: {},
         methods: {
@@ -92,44 +98,24 @@
              * @date    2019/1/23 14:55
              */
             newData() {
-                this.isInsert = true
-                const today = this.$lv.$utils.dateFormat(new Date())
-                this.formData = {
-                    startTime: today + ' 08:00:00',
-                    endTime: today + ' 18:00:00',
-                    auditTeacherId: user.classTeacherId,
-                    teacherName: user.classTeacherName,
-                    auditStatus: 'NEW',
-                    studentId: user.id,
+                if(this.ret.allScore >50) {
+                    this.isInsert = true
+                    const today = this.$lv.$utils.dateFormat(new Date())
+                    this.formData = {
+                        startTime: today + ' 08:00:00',
+                        endTime: today + ' 18:00:00',
+                        auditTeacherId: user.classTeacherId,
+                        teacherName: user.classTeacherName,
+                        auditStatus: 'NEW',
+                        studentId: user.id,
+                    }
+                    this.dialogVisible = true
+                    this.$nextTick(() => this.$refs.form.clearValidate())
+                }else {
+                    alert('当前信誉不及格！限制请假  分数为：'+this.ret.allScore+'')
+
                 }
-                this.dialogVisible = true
-                this.$nextTick(() => this.$refs.form.clearValidate())
-            },
-            /**
-             * 编辑数据
-             * @author  姚格格
-             * @date    2019/1/23 14:55
-             */
-            updateData() {
-                this.isInsert = false
-                this.formData = this.$lv.$utils.deepCopy(this.option.selectRow)
-                this.dialogVisible = true
-                this.$refs.form.clearValidate()
-            },
-            /**
-             * 删除数据
-             * @author  姚格格
-             * @date    2019/1/23 14:56
-             */
-            async deleteData() {
-                await this.$confirm(`确认要删除第${this.option.selectIndex + 1}条记录吗？`, '警告', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                })
-                await this.$http.post('leave/delete', this.option.selectRow)
-                await this.option.reload()
-                this.$message({type: 'success', message: '删除成功!'});
+
             },
             /**
              * 取消，关闭对话框
@@ -141,7 +127,7 @@
                 this.clear()
             },
             /**
-             * 保存数据，根据当前是否为新建还是编辑状态进行操作
+             * 保存数据
              * @author  姚格格
              * @date    2019/1/23 14:57
              */
@@ -157,7 +143,6 @@
                     }
                 });
             },
-
             /**
              * 发送新建数据请求
              * @author  姚格格
@@ -165,22 +150,6 @@
              */
             async insert() {
                 await this.$http.post('leave/insert', this.formData)
-            },
-            /**
-             * 发送更新数据请求
-             * @author  姚格格
-             * @date    2019/1/23 14:56
-             */
-            async update() {
-                await this.$http.post('leave/update', this.formData)
-            },
-            /**
-             * 清空对话框表单数据
-             * @author  姚格格
-             * @date    2019/1/23 14:57
-             */
-            clear() {
-                this.formData = {}
             },
             /*
              *  撤回请假记录
@@ -202,5 +171,4 @@
 </script>
 
 <style lang="scss">
-
 </style>
