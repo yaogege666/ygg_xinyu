@@ -3,6 +3,7 @@ html, body, .app {
   padding: 0;
   margin: 0;
   font-family: "Poppins", sans-serif;
+
   div {
     box-sizing: border-box;
   }
@@ -17,11 +18,13 @@ html, body, .app {
   .el-card__body {
     padding: 12px;
   }
+
   .detail-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
     span.title {
       font-weight: bold;
       font-size: 18px;
@@ -32,4 +35,8 @@ html, body, .app {
 .report-div {
   width: 100%;
   height: 300px;
+}
+
+.v-modal {
+  opacity: 0.2;
 }
