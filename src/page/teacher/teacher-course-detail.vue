@@ -198,27 +198,30 @@
                 if ((ret.allScore-0) <= 50 && (score-0) > 0) {
                     console.log('yes')
                     if (((score-0)+(ret.allScore-0)) > 50) {
-                        await this.$http.post('message/insert', this.formData)
+                        await this.$http.post('message/insert', {
+                            sendId:this.formData.checkTeacherId,
+                            receiveId:this.formData.studentId,
+                            info:'表现良好！ 解除限制请假禁令！' + ((score-0)+(ret.allScore-0))
+                        })
                         /**
                          * 新建一条良好的记录--并且允许请假 （message/insert）
                          * @author  姚格格
                          * @date    2019/3/7 18:06
                          */
-
-                        alert('表现良好！ 解除限制请假禁令！' + ((score-0)+(ret.allScore-0)))
-
                     }
                 } else if ((ret.allScore-0) > 50 && (score-0) < 0) {
                     if (((score-0)+(ret.allScore-0)) <= 50) {
-                        await this.$http.post('message/insert', this.formData)
+                        await this.$http.post('message/insert',{
+                            sendId : this.formData.checkTeacherId,
+                            receiveId:this.formData.studentId,
+                            info:'近期表现不及格！限制请假行为！' +((score-0)+(ret.allScore-0))
+                        })
 
                         /**
                          * 新建一条不及格记录，警告并限制请假，--（message/insert）
                          * @author  姚格格
                          * @date    2019/3/7 18:06
                          */
-
-                        alert('近期表现不及格！限制请假行为！' +((score-0)+(ret.allScore-0)))
                     }
                 }
 

@@ -5,7 +5,6 @@
                 <div class="stu-content-item">
                     <div class="stu-content-item">姓名:{{student.name}}</div>
                     <div class="stu-content-item">学号 :{{student.code}}</div>
-
                 </div>
             </div>
             <div class="stu-content">

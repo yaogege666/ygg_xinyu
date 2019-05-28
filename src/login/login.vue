@@ -16,12 +16,12 @@
                 </div>
             </div>
 
-            <div class="app-fast-login">
+   <!--         <div class="app-fast-login">
                 <div class="app-fast-login-item" @click="fastLogin('T7365','289345')">老师</div>
                 <div class="app-fast-login-item" @click="fastLogin('S8394','283745')">学生</div>
                 <div class="app-fast-login-item" @click="fastLogin('P6273','394875')">巡视老师</div>
                 <div class="app-fast-login-item" @click="fastLogin('admin','123456')">管理员</div>
-            </div>
+            </div>-->
         </div>
 
     </div>
